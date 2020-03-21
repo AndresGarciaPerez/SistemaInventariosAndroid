@@ -1,5 +1,6 @@
 package com.example.sistemainventario;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -11,9 +12,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    ListView lista;
+    String[] titulo;
+    String[] subTitulo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +27,27 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Inicio");
+
+        lista = (ListView)findViewById(R.id.lvLista);
+
+        titulo =getResources().getStringArray(R.array.example);
+        subTitulo =getResources().getStringArray(R.array.example2);
+        int[]imagen = {R.drawable.ejemplo1,R.drawable.ejemplo2};
+
+        Adaptador adapte = new Adaptador(getApplication().getApplicationContext(),titulo,subTitulo,imagen);
+        lista.setAdapter(adapte);
+
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0){
+                    Intent i = new Intent(getApplicationContext(),Repuestos.class );
+                    startActivity(i);
+                } else {
+                    Toast.makeText(MainActivity.this, "En mantenimiento", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
