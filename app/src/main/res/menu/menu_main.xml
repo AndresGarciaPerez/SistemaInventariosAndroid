@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.sistemainventario.MainActivity">
+    <item
+        android:id="@+id/changePassword"
+        android:title="@string/changePassword" />
+    <item
+        android:id="@+id/preferences"
+        android:title="@string/preferences" />
+    <item
+        android:id="@+id/logout"
+        android:title="@string/logout" />
+</menu>
