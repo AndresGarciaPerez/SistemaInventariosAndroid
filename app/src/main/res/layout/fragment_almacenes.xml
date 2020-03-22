@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.Repuestos">
+    tools:context=".fragments.Almacenes">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,20 +11,20 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editText3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Buscar"
+            android:hint="Buscar almacen"
             android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/btnBuscar"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#051DA1"
             android:text="Buscar"
-            android:textColor="#FFFFFF" />
+            android:textColor="#ffffff" />
 
         <ListView
             android:layout_width="match_parent"

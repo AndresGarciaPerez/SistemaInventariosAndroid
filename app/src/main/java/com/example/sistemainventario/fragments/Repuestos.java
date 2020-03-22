@@ -1,5 +1,4 @@
-package com.example.sistemainventario;
-
+package com.example.sistemainventario.fragments;
 
 import android.os.Bundle;
 
@@ -9,14 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sistemainventario.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RepuestosFragment extends Fragment {
+public class Repuestos extends Fragment {
 
-
-    public RepuestosFragment() {
+    public Repuestos() {
         // Required empty public constructor
     }
 
@@ -27,5 +26,4 @@ public class RepuestosFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_repuestos, container, false);
     }
-
 }

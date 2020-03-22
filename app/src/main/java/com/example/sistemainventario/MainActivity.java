@@ -3,11 +3,14 @@ package com.example.sistemainventario;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.sistemainventario.fragments.ListProducts;
+import com.example.sistemainventario.fragments.Repuestos;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import android.view.View;
 import android.view.Menu;
@@ -16,7 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ListProducts.Enlace {
     ListView lista;
     String[] titulo;
     String[] subTitulo;
@@ -26,28 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Inicio");
+        setTitle("");
 
-        lista = (ListView)findViewById(R.id.lvLista);
-
-        titulo =getResources().getStringArray(R.array.example);
-        subTitulo =getResources().getStringArray(R.array.example2);
-        int[]imagen = {R.drawable.ejemplo1,R.drawable.ejemplo2};
-
-        Adaptador adapte = new Adaptador(getApplication().getApplicationContext(),titulo,subTitulo,imagen);
-        lista.setAdapter(adapte);
-
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0){
-                    Intent i = new Intent(getApplicationContext(),Repuestos.class );
-                    startActivity(i);
-                } else {
-                    Toast.makeText(MainActivity.this, "En mantenimiento", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +58,37 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.changePassword) {
-            return true;
+            Toast.makeText(this, "Fragment_changePass", Toast.LENGTH_SHORT).show();
+        }
+
+        if (id == R.id.preferences) {
+            Toast.makeText(this, "Fragment_preferences", Toast.LENGTH_SHORT).show();
+        }
+
+        if (id == R.id.changePassword) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void changeFragments(Fragment fragment) {
+
+        getSupportFragmentManager().beginTransaction()
+                .addToBackStack(null).replace(R.id.frContenido, fragment).commit();
+    }
+
+
+    @Override
+    public void enviarData(String product, String quantity, String categorie, String description, int idImage) {
+        Repuestos repuestos = new Repuestos();
+        Bundle data = new Bundle();
+        data.putString("product", product);
+        data.putString("quantity", quantity);
+        data.putString("categorie", categorie);
+        data.putString("description", description);
+        data.putInt("idImage", idImage);
+        repuestos.setArguments(data);
+        changeFragments(repuestos);
     }
 }
