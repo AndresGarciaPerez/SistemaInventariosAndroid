@@ -1,4 +1,4 @@
-package com.example.sistemainventario;
+package com.example.sistemainventario.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Adaptador extends BaseAdapter {
+import com.example.sistemainventario.R;
+
+public class UbicacionesAdapter extends BaseAdapter {
     private Context context;
     private String[] titulo;
     private String[] subTitulo;
@@ -17,7 +19,7 @@ public class Adaptador extends BaseAdapter {
     TextView tvSubTitulo;
     ImageView imgImagenes;
 
-    public Adaptador(Context context, String[] titulo, String[] subTitulo, int[] imagenes) {
+    public UbicacionesAdapter(Context context, String[] titulo, String[] subTitulo, int[] imagenes) {
         this.context = context;
         this.titulo = titulo;
         this.subTitulo = subTitulo;

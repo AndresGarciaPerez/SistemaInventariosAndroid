@@ -6,40 +6,32 @@
     android:background="#fff"
     android:clickable="true"
     android:focusable="true"
-    tools:context=".fragments.Accesorios">
+    tools:context=".fragments.ListAccesorios">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="Buscar"
             android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/btnBuscar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/ovalar"
-=======
             android:background="@color/colorPrimary"
->>>>>>> b5859fdbf14ee897013cc3b04afebd36cc522a3c
             android:text="Buscar"
-            android:textColor="#ffffff" />
+            android:textColor="#FFFFFF" />
 
         <ListView
+            android:id="@+id/listAccesorios"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp" />
+            android:layout_height="626dp" />
     </LinearLayout>
+
 </FrameLayout>

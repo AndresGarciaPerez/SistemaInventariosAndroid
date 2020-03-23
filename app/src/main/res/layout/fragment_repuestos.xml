@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
+    android:clickable="true"
+    android:focusable="true"
     tools:context=".fragments.Repuestos">
 
     <LinearLayout
@@ -23,11 +26,15 @@
             android:id="@+id/btnBuscar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/ovalar"
             android:radius="50dp"
+=======
+            android:background="@color/colorPrimary"
+>>>>>>> b5859fdbf14ee897013cc3b04afebd36cc522a3c
             android:text="Buscar"
             android:textColor="#FFFFFF" />
 

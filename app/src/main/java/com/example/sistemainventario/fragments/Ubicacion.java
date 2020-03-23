@@ -1,7 +1,9 @@
 package com.example.sistemainventario.fragments;
 
+
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,9 +15,10 @@ import com.example.sistemainventario.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Accesorios extends Fragment {
+public class Ubicacion extends Fragment {
 
-    public Accesorios() {
+
+    public Ubicacion() {
         // Required empty public constructor
     }
 
@@ -24,7 +27,9 @@ public class Accesorios extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_accesorios, container, false);
+        View v = inflater.inflate(R.layout.fragment_ubicacion, container, false);
+
         return v;
     }
+
 }

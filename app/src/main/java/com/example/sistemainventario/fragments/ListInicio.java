@@ -2,9 +2,9 @@ package com.example.sistemainventario.fragments;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,9 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.sistemainventario.Adaptador;
+import com.example.sistemainventario.Adapters.InicioAdapter;
 import com.example.sistemainventario.Models.ProductsModel;
 import com.example.sistemainventario.R;
 
@@ -24,7 +23,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListProducts extends Fragment {
+public class ListInicio extends Fragment {
     ListView lista;
     String[] nameProduct;
     String[] quantity;
@@ -33,7 +32,7 @@ public class ListProducts extends Fragment {
     List<ProductsModel> productModelList = new ArrayList<>();
     Enlace enlace;
 
-    public ListProducts() {
+    public ListInicio() {
         // Required empty public constructor
     }
 
@@ -47,7 +46,7 @@ public class ListProducts extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_list_products, container, false);
+        View v = inflater.inflate(R.layout.fragment_list_inicio, container, false);
 
         lista = (ListView)v.findViewById(R.id.lvLista);
         nameProduct =getResources().getStringArray(R.array.nombreProducto);
@@ -78,14 +77,19 @@ public class ListProducts extends Fragment {
         }
 
 
-        Adaptador adapte = new Adaptador(getActivity().getApplicationContext(),categorie,quantity,imagen);
+        InicioAdapter adapte = new InicioAdapter(getActivity().getApplicationContext(),categorie,quantity,imagen);
         lista.setAdapter(adapte);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                enlace.enviarData(productModelList.get(position).getProductName(),
+                if (position == 0) {
+                    changeFragment(new ListRepuestos());
+                } else if (position == 1){
+                    changeFragment(new ListAccesorios());
+                }
+                /*enlace.enviarData(productModelList.get(position).getProductName(),
                         productModelList.get(position).getProductQuantity(),
                         productModelList.get(position).getProductCategories(),
                         productModelList.get(position).getProductDescripcion(),
@@ -95,7 +99,7 @@ public class ListProducts extends Fragment {
 
                 } else {
 
-                }
+                }*/
 
 
             }
@@ -105,6 +109,12 @@ public class ListProducts extends Fragment {
 
             return v;
 
+    }
+    public void changeFragment(Fragment fragment) {
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                .addToBackStack(null).replace(R.id.frContenido, fragment).commit();
     }
 
     @Override

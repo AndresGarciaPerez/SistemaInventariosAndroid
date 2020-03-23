@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/frContenido"
-        android:name="com.example.sistemainventario.fragments.ListProducts"
+        android:name="com.example.sistemainventario.fragments.ListInicio"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
