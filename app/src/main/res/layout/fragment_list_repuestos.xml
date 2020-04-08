@@ -8,10 +8,31 @@
     android:focusable="true"
     tools:context=".fragments.ListRepuestos">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">>
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Buscar"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Buscar"
+            android:textColor="#FFFFFF" />
+
+        <ListView
+            android:id="@+id/listRespuestos"
+            android:layout_width="match_parent"
+            android:layout_height="626dp"
+            android:layout_marginTop="15dp" />
+    </LinearLayout>
 
 </FrameLayout>

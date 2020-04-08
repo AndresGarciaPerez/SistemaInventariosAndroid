@@ -11,6 +11,10 @@
     <string name="title_notifications">Notifications</string>
 
 
+    <string name="title_activity_inventario">Inventario</string>
+    <string name="tab_text_1">Accesorios</string>
+    <string name="tab_text_2">Repuestos</string>
+
     <string-array name="categoria">
         <item>Repuestos</item>
         <item>Accesorios</item>
@@ -20,17 +24,14 @@
         <item>Ejemplo repuesto 1</item>
         <item>Ejemplo repuesto 2</item>
     </string-array>
-
     <string-array name="nombreProducto">
         <item>Ejemplo producto 1</item>
         <item>Ejemplo producto 2</item>
     </string-array>
-
     <string-array name="cantidad">
         <item>Item cantidad 10</item>
         <item>Item cantidad 20</item>
     </string-array>
-
     <string-array name="descripcion">
         <item>Description 1</item>
         <item>Description 2</item>

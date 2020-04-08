@@ -70,26 +70,12 @@
                 android:id="@+id/btnUbicacionDetalleAccesorio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ovalar"
                 android:text="Ubicación"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
     </ScrollView>
 
-
-<<<<<<< HEAD
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/ovalar"
-            android:text="Ubicacion"
-            android:textColor="#ffffff" />
-    </LinearLayout>
-=======
->>>>>>> b5859fdbf14ee897013cc3b04afebd36cc522a3c
 </FrameLayout>

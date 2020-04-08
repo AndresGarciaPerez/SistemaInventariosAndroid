@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.sistemainventario.Adapters.InicioAdapter;
+import com.example.sistemainventario.Inventario;
 import com.example.sistemainventario.Models.ProductsModel;
 import com.example.sistemainventario.R;
 
@@ -101,11 +102,8 @@ public class ListInicio extends Fragment {
 
                 }*/
 
-
             }
         });
-
-
 
             return v;
 
@@ -122,5 +120,6 @@ public class ListInicio extends Fragment {
         enlace=(Enlace)context;
         super.onAttach(context);
     }
+
 
 }
