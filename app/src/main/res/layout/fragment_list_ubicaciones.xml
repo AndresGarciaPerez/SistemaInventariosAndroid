@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".fragments.ListUbicaciones">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">>
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Buscar"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btnBuscarUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ovalar"
+            android:text="Buscar"
+            android:textColor="#FFFFFF" />
+
+        <ListView
+            android:id="@+id/listUbicaciones"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="626dp" />
+    </LinearLayout>
+</FrameLayout>
