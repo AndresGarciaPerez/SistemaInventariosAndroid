@@ -4,9 +4,7 @@ import android.os.Bundle;
 
 import com.example.sistemainventario.Utils.ChangeFragment;
 import com.example.sistemainventario.fragments.ChangePassword;
-import com.example.sistemainventario.fragments.ListInicio;
 import com.example.sistemainventario.fragments.Preferences;
-import com.example.sistemainventario.fragments.RepuestosFile.Repuestos;
 import com.example.sistemainventario.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,7 +25,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ListInicio.Enlace {
+public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -157,18 +155,5 @@ public class MainActivity extends AppCompatActivity implements ListInicio.Enlace
                 .addToBackStack(null).replace(R.id.frMainConfiguration, fragment).commit();
     }
 
-
-    @Override
-    public void enviarData(String product, String quantity, String categorie, String description, int idImage) {
-        Repuestos repuestos = new Repuestos();
-        Bundle data = new Bundle();
-        data.putString("product", product);
-        data.putString("quantity", quantity);
-        data.putString("categorie", categorie);
-        data.putString("description", description);
-        data.putInt("idImage", idImage);
-        repuestos.setArguments(data);
-        changeFragments(repuestos);
-    }
 
 }
