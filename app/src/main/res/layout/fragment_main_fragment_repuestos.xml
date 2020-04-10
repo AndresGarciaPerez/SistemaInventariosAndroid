@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MainFragment">
+    tools:context=".fragments.MainFragmentRepuestos">
 
     <fragment
-        android:id="@+id/frContenido"
-        android:name="com.example.sistemainventario.fragments.ListRepuestos"
+        android:id="@+id/frMainRepuestos"
+        android:name="com.example.sistemainventario.fragments.RepuestosFile.ListRepuestos"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

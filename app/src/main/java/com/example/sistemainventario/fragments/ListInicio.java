@@ -15,6 +15,8 @@ import android.widget.ListView;
 import com.example.sistemainventario.Adapters.InicioAdapter;
 import com.example.sistemainventario.Models.ProductsModel;
 import com.example.sistemainventario.R;
+import com.example.sistemainventario.fragments.AccesoriosFile.ListAccesorios;
+import com.example.sistemainventario.fragments.RepuestosFile.ListRepuestos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +112,7 @@ public class ListInicio extends Fragment {
 
         getActivity().getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                .addToBackStack(null).replace(R.id.frContenido, fragment).commit();
+                .addToBackStack(null).replace(R.id.frMainAccesorio, fragment).commit();
     }
 
     @Override

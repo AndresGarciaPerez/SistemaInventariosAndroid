@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
-        android:id="@+id/frContenido"
+        android:id="@+id/frMainAccesorio"
         android:name="com.example.sistemainventario.fragments.ListInicio"
         android:layout_width="776dp"
         android:layout_height="match_parent"

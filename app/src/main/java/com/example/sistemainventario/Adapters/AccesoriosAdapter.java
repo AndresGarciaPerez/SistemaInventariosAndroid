@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.sistemainventario.Models.AccesoriosModel;
 import com.example.sistemainventario.R;
-import com.example.sistemainventario.fragments.ListAccesorios;
 
 import java.util.List;
 

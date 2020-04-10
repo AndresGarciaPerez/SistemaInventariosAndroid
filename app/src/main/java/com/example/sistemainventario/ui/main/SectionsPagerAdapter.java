@@ -7,14 +7,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.sistemainventario.R;
-import com.example.sistemainventario.fragments.ListAccesorios;
-import com.example.sistemainventario.fragments.ListRepuestos;
+
+import com.example.sistemainventario.fragments.MainFragmentAccesorios;
+import com.example.sistemainventario.fragments.MainFragmentRepuestos;
 
 import java.util.List;
 
@@ -42,18 +41,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        Toast.makeText(mContext, String.valueOf(position), Toast.LENGTH_SHORT).show();
-        /*Fragment fragment = null;
+        Fragment fragment = null;
         switch (position){
             case 0:
-                fragment = new ListAccesorios();
+                fragment = new MainFragmentAccesorios();
                 break;
             case 1:
-                fragment = new ListRepuestos();
+                fragment = new MainFragmentRepuestos();
                 break;
         }
-        return fragment;*/
-        return PlaceholderFragment.newInstance(position);
+        return fragment;
     }
 
     // Se ejecuta cada vez que se cambia de actividad

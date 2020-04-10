@@ -3,7 +3,6 @@ package com.example.sistemainventario.fragments;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +13,7 @@ import android.widget.ListView;
 
 import com.example.sistemainventario.Adapters.UbicacionesAdapter;
 import com.example.sistemainventario.R;
+import com.example.sistemainventario.Utils.ChangeFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,12 +26,21 @@ public class ListUbicaciones extends Fragment {
     }
 
     ListView listUbicaciones;
+    int frMain = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_list_ubicaciones, container, false);
         listUbicaciones = v.findViewById(R.id.listUbicaciones);
+
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            frMain = bundle.getInt("frMain");
+        }
+
 
         String[] almacenes = {
                 "San Salvador",
@@ -63,16 +72,10 @@ public class ListUbicaciones extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View
                     view, final int position, long id) {
-                changeFragment(new Ubicacion());
+                ChangeFragment.changeFragment(frMain, getActivity(), new Ubicacion());
+
             }
         });
         return v;
-    }
-
-    public void changeFragment(Fragment fragment) {
-
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                .addToBackStack(null).replace(R.id.frContenido, fragment).commit();
     }
 }

@@ -5,18 +5,16 @@ import android.os.Bundle;
 import com.example.sistemainventario.fragments.ChangePassword;
 import com.example.sistemainventario.fragments.ListInicio;
 import com.example.sistemainventario.fragments.Preferences;
-import com.example.sistemainventario.fragments.Repuestos;
+import com.example.sistemainventario.fragments.RepuestosFile.Repuestos;
 import com.example.sistemainventario.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements ListInicio.Enlace
 
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                .addToBackStack(null).replace(R.id.frContenido, fragment).commit();
+                .addToBackStack(null).replace(R.id.frMainAccesorio, fragment).commit();
     }
 
 

@@ -1,8 +1,7 @@
-package com.example.sistemainventario.fragments;
+package com.example.sistemainventario.fragments.AccesoriosFile;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sistemainventario.R;
+import com.example.sistemainventario.Utils.ChangeFragment;
+import com.example.sistemainventario.fragments.ListUbicaciones;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,7 +50,14 @@ public class DetalleAccesorios extends Fragment {
         btnUbicacionDetalleAccesorio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeFragment(new ListUbicaciones());
+
+                Fragment fragmentListUbicaciones = new ListUbicaciones();
+                Bundle data = new Bundle();
+                data.putInt("frMain", R.id.frMainAccesorio);
+                fragmentListUbicaciones.setArguments(data);
+
+                ChangeFragment.changeFragment(R.id.frMainAccesorio, getActivity(), fragmentListUbicaciones);
+
             }
         });
 
@@ -57,10 +65,4 @@ public class DetalleAccesorios extends Fragment {
         return v;
     }
 
-    public void changeFragment(Fragment fragment) {
-
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                .addToBackStack(null).replace(R.id.frContenido, fragment).commit();
-    }
 }

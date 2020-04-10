@@ -10,7 +10,7 @@
 
 
     <fragment
-        android:id="@+id/frContenido"
+        android:id="@+id/frMainAccesorio"
         android:name="com.example.sistemainventario.fragments.ListInicio"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

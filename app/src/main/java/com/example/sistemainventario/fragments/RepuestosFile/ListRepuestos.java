@@ -1,12 +1,10 @@
-package com.example.sistemainventario.fragments;
+package com.example.sistemainventario.fragments.RepuestosFile;
 
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +13,9 @@ import android.widget.ListView;
 
 import com.example.sistemainventario.Adapters.AccesoriosAdapter;
 import com.example.sistemainventario.Models.AccesoriosModel;
-import com.example.sistemainventario.Models.ProductsModel;
 import com.example.sistemainventario.R;
+import com.example.sistemainventario.Utils.ChangeFragment;
+import com.example.sistemainventario.fragments.AccesoriosFile.DetalleAccesorios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,46 +23,43 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListAccesorios extends Fragment {
+public class ListRepuestos extends Fragment {
 
 
-    public ListAccesorios() {
+    public ListRepuestos() {
         // Required empty public constructor
     }
-
-    ListView listAccesorios;
+    ListView listRepuestos;
     AccesoriosAdapter accesoriosAdapter;
     List<AccesoriosModel> accesoriosModelsList = new ArrayList<>();
-
     AccesoriosModel accesoriosModel;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_list_accesorios, container, false);
-        listAccesorios = v.findViewById(R.id.listAccesorios);
-
+        View v = inflater.inflate(R.layout.fragment_list_repuestos, container, false);
+        listRepuestos = v.findViewById(R.id.listRespuestos);
 
         String[] name = {
-                "Pantalla LG",
-                "Pantalla TV",
-                "Espiga para DVD",
-                "USB de 16GB"
+                "Placa iPhone 6s",
+                "Bateria Samsung S7 Edge",
+                "Bandeja Sim Samsung S8"
 
         };
         String[] disponibles = {
                 "item 2",
                 "item 4",
-                "item 6",
-                "item 8"
+                "item 6"
         };
 
         int[] images = {
-                R.drawable.movil,
-                R.drawable.desktop,
-                R.drawable.espiga,
-                R.drawable.usb
+                R.drawable.ejemplo2,
+                R.drawable.baterias7,
+                R.drawable.simgalaxys8,
         };
+
         for (int i=0; i<name.length; i ++){
 
             accesoriosModel = new AccesoriosModel(name[i], disponibles[i], images[i]);
@@ -74,33 +70,30 @@ public class ListAccesorios extends Fragment {
 
         // LLenamos el modelo con la informacion
         accesoriosModel.setAccesorios(accesoriosModelsList);
+        listRepuestos.setAdapter(accesoriosAdapter);
 
-        listAccesorios.setAdapter(accesoriosAdapter);
 
-
-        listAccesorios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listRepuestos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View
                     view, final int position, long id) {
-                Fragment fragmentDetalle = new DetalleAccesorios();
+                Fragment fragmentDetalle = new DetalleRepuestos();
                 Bundle data = new Bundle();
                 data.putString("name", accesoriosModelsList.get(position).getName());
                 data.putString("item", accesoriosModelsList.get(position).getItem());
                 data.putInt("image", accesoriosModelsList.get(position).getImage());
                 fragmentDetalle.setArguments(data);
 
-                changeFragment(fragmentDetalle);
+                ChangeFragment.changeFragment(R.id.frMainRepuestos, getActivity(), fragmentDetalle);
+
 
             }
         });
 
+
+
         return v;
     }
 
-    public void changeFragment(Fragment fragment) {
 
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                .addToBackStack(null).replace(R.id.frContenido, fragment).commit();
-    }
 }
