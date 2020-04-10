@@ -1,4 +1,4 @@
-package com.example.sistemainventario.fragments;
+package com.example.sistemainventario.fragments.FragContenedores;
 
 
 import android.os.Bundle;

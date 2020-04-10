@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.FragContenedores.MainFragmentAccesorios">
+    tools:context=".fragments.FragContenedores.MainFragmentConfig">
 
     <fragment
-        android:id="@+id/frMainAccesorio"
-        android:name="com.example.sistemainventario.fragments.AccesoriosFile.ListAccesorios"
+        android:id="@+id/frMainConfiguration"
+        android:name="com.example.sistemainventario.fragments.Preferences"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

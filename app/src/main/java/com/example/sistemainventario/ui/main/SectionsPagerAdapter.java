@@ -3,7 +3,6 @@ package com.example.sistemainventario.ui.main;
 import android.content.Context;
 import android.util.SparseArray;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,8 +11,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 
-import com.example.sistemainventario.fragments.MainFragmentAccesorios;
-import com.example.sistemainventario.fragments.MainFragmentRepuestos;
+import com.example.sistemainventario.fragments.FragContenedores.MainFragmentConfig;
+import com.example.sistemainventario.fragments.FragContenedores.MainFragmentAccesorios;
+import com.example.sistemainventario.fragments.FragContenedores.MainFragmentRepuestos;
 
 import java.util.List;
 
@@ -23,8 +23,6 @@ import java.util.List;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    // Array que contiene todos los fragment que se van instanciando
-    SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
     private final Context mContext;
     public FragmentManager fragmentManager;
@@ -49,7 +47,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 fragment = new MainFragmentRepuestos();
                 break;
+            case 2:
+                fragment = new MainFragmentConfig();
         }
+
         return fragment;
     }
 
