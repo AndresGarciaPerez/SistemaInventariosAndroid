@@ -1,7 +1,11 @@
 package com.example.sistemainventario.ui.main;
 
 import android.content.Context;
+import android.util.SparseArray;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
@@ -9,6 +13,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.sistemainventario.R;
+import com.example.sistemainventario.fragments.ListAccesorios;
+import com.example.sistemainventario.fragments.ListRepuestos;
+
+import java.util.List;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -16,31 +24,55 @@ import com.example.sistemainventario.R;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
-    private final Context mContext;
+    // Array que contiene todos los fragment que se van instanciando
+    SparseArray<Fragment> registeredFragments = new SparseArray<Fragment>();
 
-    public SectionsPagerAdapter(Context context, FragmentManager fm) {
+    private final Context mContext;
+    public FragmentManager fragmentManager;
+
+    public List tabsName;
+
+    public SectionsPagerAdapter(Context context, FragmentManager fm, List tabsName) {
         super(fm);
         mContext = context;
+        fragmentManager = fm;
+        this.tabsName = tabsName;
     }
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+
+        Toast.makeText(mContext, String.valueOf(position), Toast.LENGTH_SHORT).show();
+        /*Fragment fragment = null;
+        switch (position){
+            case 0:
+                fragment = new ListAccesorios();
+                break;
+            case 1:
+                fragment = new ListRepuestos();
+                break;
+        }
+        return fragment;*/
+        return PlaceholderFragment.newInstance(position);
     }
+
+    // Se ejecuta cada vez que se cambia de actividad
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        Toast.makeText(mContext, String.valueOf(position), Toast.LENGTH_SHORT).show();
+        return super.instantiateItem(container, position);
+    }
+
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return mContext.getResources().getString(TAB_TITLES[position]);
+        return tabsName.get(position).toString();
     }
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 2;
+        return tabsName.size();
     }
 }

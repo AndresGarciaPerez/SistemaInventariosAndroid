@@ -4,7 +4,6 @@ package com.example.sistemainventario.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.sistemainventario.Adapters.InicioAdapter;
-import com.example.sistemainventario.Inventario;
 import com.example.sistemainventario.Models.ProductsModel;
 import com.example.sistemainventario.R;
 

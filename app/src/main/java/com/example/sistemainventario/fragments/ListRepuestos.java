@@ -43,22 +43,19 @@ public class ListRepuestos extends Fragment {
         String[] name = {
                 "Placa iPhone 6s",
                 "Bateria Samsung S7 Edge",
-                "Bandeja Sim Samsung S8",
-                "USB de 16GB"
+                "Bandeja Sim Samsung S8"
 
         };
         String[] disponibles = {
                 "item 2",
                 "item 4",
-                "item 6",
-                "item 8"
+                "item 6"
         };
 
         int[] images = {
                 R.drawable.ejemplo2,
                 R.drawable.baterias7,
                 R.drawable.simgalaxys8,
-                R.drawable.usb
         };
 
         for (int i=0; i<name.length; i ++){

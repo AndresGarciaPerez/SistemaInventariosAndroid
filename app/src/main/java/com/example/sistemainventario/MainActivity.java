@@ -6,26 +6,45 @@ import com.example.sistemainventario.fragments.ChangePassword;
 import com.example.sistemainventario.fragments.ListInicio;
 import com.example.sistemainventario.fragments.Preferences;
 import com.example.sistemainventario.fragments.Repuestos;
+import com.example.sistemainventario.ui.main.SectionsPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements ListInicio.Enlace {
-    ListView lista;
-    String[] titulo;
-    String[] subTitulo;
+
+    private TabLayout tabs;
+    private ViewPager viewPager;
+    private SectionsPagerAdapter sectionsPagerAdapter;
+    public List tabsName = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        setTitle("Control de inventarios");
+
+        tabsName.add("Accesorios");
+        tabsName.add("Repuestos");
+
+
+        sectionsPagerAdapter = new SectionsPagerAdapter(this,
+                getSupportFragmentManager(), tabsName);
+
+        viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+
+        tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
     }
 
     @Override
