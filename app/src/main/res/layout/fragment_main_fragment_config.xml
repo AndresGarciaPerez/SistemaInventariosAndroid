@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/frMainConfiguration"
-        android:name="com.example.sistemainventario.fragments.Preferences"
+        android:name="com.electivaIII.sistemainventario.fragments.Preferences"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
