@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.electivaIII.sistemainventario.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -60,5 +61,9 @@ public class MapsUbi extends Fragment implements OnMapReadyCallback {
         LatLng sydney = new LatLng(13.68935, -89.18718);
         mMap.addMarker(new MarkerOptions().position(sydney).title("San Salvador"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16));
+    }
+
+    public void LatLong() {
+        Toast.makeText(getActivity(), "Funciona perro :v", Toast.LENGTH_SHORT).show();
     }
 }

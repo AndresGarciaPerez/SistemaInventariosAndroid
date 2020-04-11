@@ -89,7 +89,14 @@ public class ListUbicaciones extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View
                     view, final int position, long id) {
-                ChangeFragment.changeFragment(frMain, getActivity(), new Ubicacion());
+                Ubicacion ubicacion = new Ubicacion();
+                Bundle bundle = new Bundle();
+                bundle.putDouble("latitud", latitud[position]);
+                bundle.putDouble("longitud", longitud[position]);
+                bundle.putString("almacen", almacenes[position]);
+                ubicacion.setArguments(bundle);
+
+                ChangeFragment.changeFragment(frMain, getActivity(), ubicacion);
 
             }
         });
