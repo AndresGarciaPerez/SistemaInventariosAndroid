@@ -36,5 +36,6 @@
         <item>Description 1</item>
         <item>Description 2</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

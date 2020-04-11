@@ -1,6 +1,7 @@
 package com.electivaIII.sistemainventario.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.electivaIII.sistemainventario.Adapters.UbicacionesAdapter;
+import com.electivaIII.sistemainventario.MapsActivity;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 
@@ -42,7 +44,7 @@ public class ListUbicaciones extends Fragment {
         }
 
 
-        String[] almacenes = {
+        final String[] almacenes = {
                 "San Salvador",
                 "Santa Ana",
                 "Santa Tecla",
@@ -65,6 +67,22 @@ public class ListUbicaciones extends Fragment {
                 "34"
         };
 
+        final double[] latitud = {
+                13.68935,
+                13.99417,
+                13.67694,
+                13.686014,
+                13.80722
+        };
+
+        final double[] longitud = {
+                -89.18718,
+                -89.55972,
+                -89.27972,
+                -89.1894223,
+                -89.17917
+        };
+
         UbicacionesAdapter ubicacionesAdapter = new UbicacionesAdapter(getContext(), almacenes, cantidades, images);
         listUbicaciones.setAdapter(ubicacionesAdapter);
 
@@ -72,7 +90,13 @@ public class ListUbicaciones extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View
                     view, final int position, long id) {
-                ChangeFragment.changeFragment(frMain, getActivity(), new Ubicacion());
+                //ChangeFragment.changeFragment(frMain, getActivity(), new Ubicacion());
+
+                Intent googleMaps = new Intent(getActivity(), MapsActivity.class);
+                googleMaps.putExtra("latitud", latitud[position]);
+                googleMaps.putExtra("longitud", longitud[position]);
+                googleMaps.putExtra("almacenes", almacenes[position]);
+                startActivity(googleMaps);
 
             }
         });
