@@ -18,15 +18,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView2"
+            <fragment
+                android:id="@+id/frMainMap"
+                android:name="com.electivaIII.sistemainventario.fragments.MapsUbi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/mapa" />
+                android:layout_height="574dp" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center|center_horizontal"
                 android:layout_margin="15dp">
 
                 <LinearLayout

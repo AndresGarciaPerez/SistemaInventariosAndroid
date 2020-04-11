@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.electivaIII.sistemainventario.Adapters.UbicacionesAdapter;
-import com.electivaIII.sistemainventario.MapsActivity;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 
@@ -90,13 +89,7 @@ public class ListUbicaciones extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View
                     view, final int position, long id) {
-                //ChangeFragment.changeFragment(frMain, getActivity(), new Ubicacion());
-
-                Intent googleMaps = new Intent(getActivity(), MapsActivity.class);
-                googleMaps.putExtra("latitud", latitud[position]);
-                googleMaps.putExtra("longitud", longitud[position]);
-                googleMaps.putExtra("almacenes", almacenes[position]);
-                startActivity(googleMaps);
+                ChangeFragment.changeFragment(frMain, getActivity(), new Ubicacion());
 
             }
         });
