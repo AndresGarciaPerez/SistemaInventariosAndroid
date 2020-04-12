@@ -1,7 +1,6 @@
 package com.electivaIII.sistemainventario.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.electivaIII.sistemainventario.Adapters.UbicacionesAdapter;
-import com.electivaIII.sistemainventario.Models.LatLong;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 
@@ -90,17 +88,16 @@ public class ListUbicaciones extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View
                     view, final int position, long id) {
-                Ubicacion ubicacion = new Ubicacion();
+                MapsUbi mapsUbi = new MapsUbi();
                 Bundle bundle = new Bundle();
                 bundle.putDouble("latitud", latitud[position]);
                 bundle.putDouble("longitud", longitud[position]);
                 bundle.putString("almacen", almacenes[position]);
-                ubicacion.setArguments(bundle);
+                mapsUbi.setArguments(bundle);
 
 
-                new LatLong(latitud[position], longitud[position], almacenes[position]);
 
-                ChangeFragment.changeFragment(frMain, getActivity(), ubicacion);
+                ChangeFragment.changeFragment(frMain, getActivity(), mapsUbi);
 
             }
         });
