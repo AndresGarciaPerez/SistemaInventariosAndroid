@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.electivaIII.sistemainventario.Adapters.UbicacionesAdapter;
+import com.electivaIII.sistemainventario.Models.LatLong;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 
@@ -95,6 +96,9 @@ public class ListUbicaciones extends Fragment {
                 bundle.putDouble("longitud", longitud[position]);
                 bundle.putString("almacen", almacenes[position]);
                 ubicacion.setArguments(bundle);
+
+
+                new LatLong(latitud[position], longitud[position], almacenes[position]);
 
                 ChangeFragment.changeFragment(frMain, getActivity(), ubicacion);
 

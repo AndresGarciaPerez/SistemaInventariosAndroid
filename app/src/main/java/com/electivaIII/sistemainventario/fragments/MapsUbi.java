@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.electivaIII.sistemainventario.Models.LatLong;
 import com.electivaIII.sistemainventario.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,7 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 public class MapsUbi extends Fragment implements OnMapReadyCallback {
 
-
+    LatLong latLong = new LatLong();
     private GoogleMap mMap;
     SupportMapFragment mapFragment;
     public MapsUbi() {
@@ -57,13 +58,13 @@ public class MapsUbi extends Fragment implements OnMapReadyCallback {
 
         UiSettings uiSettings = mMap.getUiSettings();
         uiSettings.setZoomControlsEnabled(true);
+
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(13.68935, -89.18718);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("San Salvador"));
+        LatLng sydney = new LatLng(latLong.getLat(), latLong.getLon());
+
+        mMap.addMarker(new MarkerOptions().position(sydney).title(latLong.getUbication()));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16));
     }
 
-    public void LatLong() {
-        Toast.makeText(getActivity(), "Funciona perro :v", Toast.LENGTH_SHORT).show();
-    }
 }
