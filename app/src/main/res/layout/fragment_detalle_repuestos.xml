@@ -9,69 +9,75 @@
     android:focusable="true"
     tools:context=".fragments.RepuestosFile.DetalleRepuestos">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageViewDetalleRespuesto"
-            android:layout_width="177dp"
-            android:layout_height="177dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ejemplo1"
-            app:srcCompat="@drawable/ejemplo2" />
-
-        <TextView
-            android:id="@+id/txtProductoDetalleRepuestos"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center|center_vertical"
-            android:text="TextView"
-            android:textColor="#000000" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Numero de serie: 3455-6" />
+            <ImageView
+                android:id="@+id/imageViewDetalleRespuesto"
+                android:layout_width="177dp"
+                android:layout_height="177dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ejemplo1"
+                app:srcCompat="@drawable/ejemplo2" />
 
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Fecha de entrega: 02-09-2019" />
+            <TextView
+                android:id="@+id/txtProductoDetalleRepuestos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center|center_vertical"
+                android:text="TextView"
+                android:textColor="#000000" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Precio de compra: $50.00" />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Numero de serie: 3455-6" />
 
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Unidades disponible: 20" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha de entrega: 02-09-2019" />
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Proveedor: Apple" />
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Precio de compra: $50.00" />
 
-        <Button
-            android:id="@+id/btnUbicacionDetalleRepuesto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/ovalar"
-            android:text="Ubicacion"
-            android:textColor="#ffffff" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unidades disponible: 20" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Proveedor: Apple" />
+
+            <Button
+                android:id="@+id/btnUbicacionDetalleRepuesto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/ovalar"
+                android:text="Ubicacion"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>

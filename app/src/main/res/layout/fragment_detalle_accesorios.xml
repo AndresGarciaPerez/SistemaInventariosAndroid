@@ -9,7 +9,7 @@
     android:focusable="true"
     tools:context=".fragments.AccesoriosFile.DetalleAccesorios">
 
-    <ScrollView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -77,6 +77,6 @@
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>
