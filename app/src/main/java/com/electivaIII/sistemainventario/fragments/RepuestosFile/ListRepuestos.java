@@ -5,14 +5,17 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.electivaIII.sistemainventario.Adapters.AccesoriosAdapter;
-import com.electivaIII.sistemainventario.Models.AccesoriosModel;
+import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 
@@ -30,9 +33,10 @@ public class ListRepuestos extends Fragment {
     }
     ListView listRepuestos;
     AccesoriosAdapter accesoriosAdapter;
-    List<AccesoriosModel> accesoriosModelsList = new ArrayList<>();
-    AccesoriosModel accesoriosModel;
+    List<AccesoriosRepuestosModel> accesoriosRepuestosModelsList = new ArrayList<>();
+    AccesoriosRepuestosModel accesoriosRepuestosModel;
 
+    TextView txtFindListRespuestos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +44,7 @@ public class ListRepuestos extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_list_repuestos, container, false);
         listRepuestos = v.findViewById(R.id.listRespuestos);
+        txtFindListRespuestos = v.findViewById(R.id.txtFindListRespuestos);
 
         String[] name = {
                 "Placa iPhone 6s",
@@ -61,14 +66,14 @@ public class ListRepuestos extends Fragment {
 
         for (int i=0; i<name.length; i ++){
 
-            accesoriosModel = new AccesoriosModel(name[i], disponibles[i], images[i]);
-            accesoriosModelsList.add(accesoriosModel);
+            accesoriosRepuestosModel = new AccesoriosRepuestosModel(name[i], disponibles[i], images[i]);
+            accesoriosRepuestosModelsList.add(accesoriosRepuestosModel);
         }
 
-        accesoriosAdapter = new AccesoriosAdapter(getContext(), accesoriosModelsList);
+        accesoriosAdapter = new AccesoriosAdapter(getContext(), accesoriosRepuestosModelsList);
 
         // LLenamos el modelo con la informacion
-        accesoriosModel.setAccesorios(accesoriosModelsList);
+        accesoriosRepuestosModel.setAccesorios(accesoriosRepuestosModelsList);
         listRepuestos.setAdapter(accesoriosAdapter);
 
 
@@ -78,9 +83,9 @@ public class ListRepuestos extends Fragment {
                     view, final int position, long id) {
                 Fragment fragmentDetalle = new DetalleRepuestos();
                 Bundle data = new Bundle();
-                data.putString("name", accesoriosModelsList.get(position).getName());
-                data.putString("item", accesoriosModelsList.get(position).getItem());
-                data.putInt("image", accesoriosModelsList.get(position).getImage());
+                data.putString("name", accesoriosRepuestosModelsList.get(position).getName());
+                data.putString("item", accesoriosRepuestosModelsList.get(position).getItem());
+                data.putInt("image", accesoriosRepuestosModelsList.get(position).getImage());
                 fragmentDetalle.setArguments(data);
 
                 ChangeFragment.changeFragment(R.id.frMainRepuestos, getActivity(), fragmentDetalle);
@@ -90,7 +95,21 @@ public class ListRepuestos extends Fragment {
         });
 
 
+        txtFindListRespuestos.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                accesoriosAdapter.getFilter().filter(s.toString());
+            }
+        });
         return v;
     }
 

@@ -14,20 +14,12 @@
         android:orientation="vertical">>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/txtFindListAccesorios"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Buscar"
             android:inputType="textPersonName" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/ovalar"
-            android:text="Buscar"
-            android:textColor="#FFFFFF" />
 
         <ListView
             android:id="@+id/listAccesorios"

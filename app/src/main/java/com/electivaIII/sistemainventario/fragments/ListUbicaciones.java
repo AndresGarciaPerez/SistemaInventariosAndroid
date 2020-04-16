@@ -5,15 +5,23 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.electivaIII.sistemainventario.Adapters.UbicacionesAdapter;
+import com.electivaIII.sistemainventario.Models.UbicacionesModel;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +35,10 @@ public class ListUbicaciones extends Fragment {
 
     ListView listUbicaciones;
     int frMain = 0;
+    TextView txtFindListLocation;
+
+    List<UbicacionesModel> ubicacionesModelsArray = new ArrayList<>();
+    UbicacionesModel ubicacionesModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,12 +47,12 @@ public class ListUbicaciones extends Fragment {
         View v = inflater.inflate(R.layout.fragment_list_ubicaciones, container, false);
         listUbicaciones = v.findViewById(R.id.listUbicaciones);
 
+        txtFindListLocation = v.findViewById(R.id.editText);
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             frMain = bundle.getInt("frMain");
         }
-
 
         final String[] almacenes = {
                 "San Salvador",
@@ -81,7 +93,20 @@ public class ListUbicaciones extends Fragment {
                 -89.17917
         };
 
-        UbicacionesAdapter ubicacionesAdapter = new UbicacionesAdapter(getContext(), almacenes, cantidades, images);
+        if (ubicacionesModelsArray.size() == 0){
+
+            for (int i= 0; i<almacenes.length; i++){
+                ubicacionesModel = new UbicacionesModel(almacenes[i], cantidades[i],
+                        images[i], latitud[i], longitud[i]);
+                ubicacionesModelsArray.add(ubicacionesModel);
+            }
+        }
+
+
+        Log.i("value", String.valueOf(ubicacionesModelsArray.size()));
+        Log.i("value", String.valueOf(ubicacionesModel.getUbicaciones().size()));
+
+        final UbicacionesAdapter ubicacionesAdapter = new UbicacionesAdapter(getContext(), ubicacionesModelsArray);
         listUbicaciones.setAdapter(ubicacionesAdapter);
 
         listUbicaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -90,9 +115,9 @@ public class ListUbicaciones extends Fragment {
                     view, final int position, long id) {
                 MapsUbi mapsUbi = new MapsUbi();
                 Bundle bundle = new Bundle();
-                bundle.putDouble("latitud", latitud[position]);
-                bundle.putDouble("longitud", longitud[position]);
-                bundle.putString("almacen", almacenes[position]);
+                bundle.putDouble("latitud", ubicacionesModelsArray.get(position).getLatitud());
+                bundle.putDouble("longitud", ubicacionesModelsArray.get(position).getLongitud());
+                bundle.putString("almacen", ubicacionesModelsArray.get(position).getUbication_de_almacen());
                 mapsUbi.setArguments(bundle);
 
 
@@ -101,6 +126,25 @@ public class ListUbicaciones extends Fragment {
 
             }
         });
+
+
+        txtFindListLocation.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ubicacionesAdapter.getFilter().filter(s.toString());
+            }
+        });
+
+
         return v;
     }
 }
