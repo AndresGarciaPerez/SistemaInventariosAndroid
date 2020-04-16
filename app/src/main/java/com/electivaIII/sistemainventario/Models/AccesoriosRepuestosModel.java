@@ -3,13 +3,13 @@ package com.electivaIII.sistemainventario.Models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccesoriosModel {
+public class AccesoriosRepuestosModel {
     private String name;
     private String item;
     private int image;
     private static List accesorios = new ArrayList<>();
 
-    public AccesoriosModel(String name, String item, int image) {
+    public AccesoriosRepuestosModel(String name, String item, int image) {
         this.name = name;
         this.item = item;
         this.image = image;
@@ -33,7 +33,7 @@ public class AccesoriosModel {
     }
 
     public static void setAccesorios(List accesorios) {
-        AccesoriosModel.accesorios = accesorios;
+        AccesoriosRepuestosModel.accesorios = accesorios;
     }
 
     public static List getAccesorios() {

@@ -13,43 +13,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">>
 
-        <androidx.cardview.widget.CardView
+        <EditText
+            android:id="@+id/txtFindListRespuestos"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Buscar"
+            android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Buscar"
-                android:inputType="textPersonName" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+        <ListView
+            android:id="@+id/listRespuestos"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/ovalar"
-                android:text="Buscar"
-                android:textColor="#FFFFFF" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <ListView
-                android:id="@+id/listRespuestos"
-                android:layout_width="match_parent"
-                android:layout_height="626dp"
-                android:layout_marginTop="15dp" />
-        </androidx.cardview.widget.CardView>
-
+            android:layout_height="626dp"
+            android:layout_marginTop="15dp" />
     </LinearLayout>
 
 </FrameLayout>
