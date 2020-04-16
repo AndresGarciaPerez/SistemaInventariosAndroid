@@ -11,6 +11,8 @@ import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+
+import com.electivaIII.sistemainventario.LoginActivity;
 import com.electivaIII.sistemainventario.R;
 
 /**

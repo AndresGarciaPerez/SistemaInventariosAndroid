@@ -34,12 +34,13 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center|center_vertical"
                 android:text="TextView"
-                android:textColor="#000000" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Numero de serie: 3455-6" />
 
             <TextView

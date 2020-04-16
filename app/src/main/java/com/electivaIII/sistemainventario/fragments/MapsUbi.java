@@ -57,7 +57,7 @@ public class MapsUbi extends Fragment implements OnMapReadyCallback {
 
     private int MY_PERMISION_REQUEST_ACCESS_FINE_LOCATION;
     private static final int LOCATION_REQUEST = 500;
-    Double latitud, longitud, myLatitud, myLongitud;
+    Double latitud=0.0, longitud=0.0, myLatitud=0.0, myLongitud=0.0;
 
     String almacen;
     TextView txtAlmacenUbicacion;
