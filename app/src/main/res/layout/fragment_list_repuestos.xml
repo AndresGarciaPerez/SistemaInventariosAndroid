@@ -13,19 +13,30 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">>
 
-        <EditText
-            android:id="@+id/txtFindListRespuestos"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Buscar"
-            android:inputType="textPersonName" />
+            android:layout_height="match_parent" >
 
-        <ListView
-            android:id="@+id/listRespuestos"
+            <EditText
+                android:id="@+id/txtFindListRespuestos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Buscar"
+                android:inputType="textPersonName" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="626dp"
-            android:layout_marginTop="15dp" />
+            android:layout_height="match_parent" >
+
+            <ListView
+                android:id="@+id/listRespuestos"
+                android:layout_width="match_parent"
+                android:layout_height="626dp"
+                android:layout_marginTop="15dp" />
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
 </FrameLayout>

@@ -1,6 +1,8 @@
 package com.electivaIII.sistemainventario.fragments.AccesoriosFile;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,8 +28,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class ListAccesorios extends Fragment {
-
-
+    Boolean language=false;
     public ListAccesorios() {
         // Required empty public constructor
     }
@@ -46,7 +47,11 @@ public class ListAccesorios extends Fragment {
         listAccesorios = v.findViewById(R.id.listAccesorios);
         txtFindListAccesorios = v.findViewById(R.id.txtFindListAccesorios);
 
-
+        SharedPreferences idioma = getActivity().getSharedPreferences("idioma", Context.MODE_PRIVATE);
+        language = idioma.getBoolean("trueIdioma",false);
+        if (language==true){
+           txtFindListAccesorios.setHint("Search");
+        }
 
         String[] name = {
                 "Pantalla LG",

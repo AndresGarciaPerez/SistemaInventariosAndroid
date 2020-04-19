@@ -1,6 +1,8 @@
 package com.electivaIII.sistemainventario.fragments.RepuestosFile;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,8 +28,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class ListRepuestos extends Fragment {
-
-
+    Boolean language=false;
     public ListRepuestos() {
         // Required empty public constructor
     }
@@ -45,6 +46,12 @@ public class ListRepuestos extends Fragment {
         View v = inflater.inflate(R.layout.fragment_list_repuestos, container, false);
         listRepuestos = v.findViewById(R.id.listRespuestos);
         txtFindListRespuestos = v.findViewById(R.id.txtFindListRespuestos);
+
+        SharedPreferences idioma = getActivity().getSharedPreferences("idioma", Context.MODE_PRIVATE);
+        language = idioma.getBoolean("trueIdioma",false);
+        if (language==true){
+            txtFindListRespuestos.setHint("Search");
+        }
 
         String[] name = {
                 "Placa iPhone 6s",

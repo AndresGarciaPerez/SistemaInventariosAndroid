@@ -1,5 +1,8 @@
 package com.electivaIII.sistemainventario;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.electivaIII.sistemainventario.fragments.ChangePassword;
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private SectionsPagerAdapter sectionsPagerAdapter;
     public List tabsName = new ArrayList<>();
+    Preferences preferences;
+    Boolean language=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +36,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        preferences = new Preferences();
 
         tabsName.add("Accesorios");
         tabsName.add("Repuestos");
+
+        SharedPreferences idioma = this.getSharedPreferences("idioma", Context.MODE_PRIVATE);
+        language = idioma.getBoolean("trueIdioma",false);
+        if (language==true){
+            tabsName.set(0,"Spare part");
+            tabsName.set(1,"Accesories");
+            setTitle("Inventory System");
+        } else if(language==false){
+            setTitle("Sistema Inventario");
+        }
 
 
         sectionsPagerAdapter = new SectionsPagerAdapter(this,
@@ -85,6 +101,18 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem changePass = menu.findItem(R.id.changePassword);
+        MenuItem preferences = menu.findItem(R.id.preferences);
+        MenuItem logout = menu.findItem(R.id.logout);
+        if (language==true){
+            changePass.setTitle("Change password");
+            preferences.setTitle("Preferences");
+            logout.setTitle("Log out");
+        }else if (language==false){
+            changePass.setTitle("Cambiar contraseña");
+            preferences.setTitle("Preferencias");
+            logout.setTitle("Cerrar sesion");
+        }
         return true;
     }
 
@@ -95,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         Fragment fragment = null;
+
         switch (id){
             case R.id.changePassword:
                 fragment = new ChangePassword();
@@ -116,7 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.logout:
-                finish();
+                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(i);
+                this.finish();
         }
 
 

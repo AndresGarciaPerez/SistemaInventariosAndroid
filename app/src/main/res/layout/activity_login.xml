@@ -20,7 +20,7 @@
             app:srcCompat="@drawable/iniciologin" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/etMail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -29,7 +29,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText8"
+            android:id="@+id/etPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -46,12 +46,11 @@
             android:textColor="#ffffff" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/tvPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center|center_horizontal"
-            android:text="Olvide mi contraseña"
-            android:textColor="#370B3E" />
+            android:text="Olvide mi contraseña" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

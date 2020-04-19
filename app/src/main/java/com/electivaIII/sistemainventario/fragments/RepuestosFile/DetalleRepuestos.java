@@ -1,5 +1,7 @@
 package com.electivaIII.sistemainventario.fragments.RepuestosFile;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,7 +21,7 @@ import com.electivaIII.sistemainventario.fragments.ListUbicaciones;
  * A simple {@link Fragment} subclass.
  */
 public class DetalleRepuestos extends Fragment {
-
+    Boolean language=false;
     public DetalleRepuestos() {
         // Required empty public constructor
     }
@@ -44,9 +46,15 @@ public class DetalleRepuestos extends Fragment {
         imageViewDetalleRespuesto = v.findViewById(R.id.imageViewDetalleRespuesto);
         txtProductoDetalleRepuestos = v.findViewById(R.id.txtProductoDetalleRepuestos);
         btnUbicacionDetalleRepuesto = v.findViewById(R.id.btnUbicacionDetalleRepuesto);
-
         txtProductoDetalleRepuestos.setText(name);
         imageViewDetalleRespuesto.setImageResource(image);
+
+        SharedPreferences idioma = getActivity().getSharedPreferences("idioma", Context.MODE_PRIVATE);
+        language = idioma.getBoolean("trueIdioma",false);
+        if (language==true){
+            btnUbicacionDetalleRepuesto.setText("Location");
+        }
+
 
         btnUbicacionDetalleRepuesto.setOnClickListener(new View.OnClickListener() {
             @Override

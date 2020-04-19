@@ -1,6 +1,7 @@
 package com.electivaIII.sistemainventario.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.electivaIII.sistemainventario.LoginActivity;
+import com.electivaIII.sistemainventario.MainActivity;
 import com.electivaIII.sistemainventario.R;
 
 /**
@@ -27,7 +30,10 @@ public class Preferences extends Fragment {
     public Preferences() {
         // Required empty public constructor
     }
-    private Switch aSwitch;
+    public Switch aSwitch;
+    public Switch inglesSwitch;
+    private TextView tvNoche, tvIngles, tvPantalla, tvSesion;
+    private  Boolean estadoIdioma;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +42,53 @@ public class Preferences extends Fragment {
 
         sharedPreferences = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         aSwitch = v.findViewById(R.id.sModoOscuro);
+        inglesSwitch = v.findViewById(R.id.swIngles);
+        tvNoche = v.findViewById(R.id.tvNoche);
+        tvIngles = v.findViewById(R.id.tvIngles);
+        tvPantalla = v.findViewById(R.id.tvPantalla);
+        tvSesion = v.findViewById(R.id.tvSesion);
+
+        SharedPreferences idioma = getActivity().getSharedPreferences("idioma",Context.MODE_PRIVATE);
+        estadoIdioma = idioma.getBoolean("trueIdioma",false);
+        if (estadoIdioma==true){inglesSwitch.setChecked(true);
+            tvNoche.setText("DarkMode");
+            tvSesion.setText("keep session active");
+            tvIngles.setText("change to Spanish");
+            tvPantalla.setText("Select start view");
+
+        }
+
+
+        inglesSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+
+                    SharedPreferences idioma = getActivity().getSharedPreferences("idioma",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = idioma.edit();
+                    editor.putBoolean("trueIdioma",true);
+                    editor.apply();
+                    Intent i = new Intent(getActivity(), MainActivity.class);
+                    startActivity(i);
+                }else{
+                    tvNoche.setText("Modo noche");
+                    tvSesion.setText("Mantener sesion activa");
+                    tvIngles.setText("Cambiar a idioma ingles");
+                    tvPantalla.setText("Seleccionar pantalla de inicio");
+
+                    SharedPreferences idioma = getActivity().getSharedPreferences("idioma",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = idioma.edit();
+                    editor.putBoolean("trueIdioma",false);
+                    editor.apply();
+
+                    Intent i = new Intent(getActivity(), MainActivity.class);
+                    startActivity(i);
+                }
+            }
+        });
+
+
+
 
         checkNightModeActivated();
 
@@ -45,10 +98,20 @@ public class Preferences extends Fragment {
                 if(isChecked){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     saveNightModeState(true);
+
+                    SharedPreferences estado = getActivity().getSharedPreferences("estado",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = estado.edit();
+                    editor.putBoolean("true",true);
+                    editor.apply();
                    // getActivity().recreate();
                 }else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     saveNightModeState(false);
+
+                    SharedPreferences estado = getActivity().getSharedPreferences("estado",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = estado.edit();
+                    editor.putBoolean("true",false);
+                    editor.apply();
                    // getActivity().recreate();
                 }
             }

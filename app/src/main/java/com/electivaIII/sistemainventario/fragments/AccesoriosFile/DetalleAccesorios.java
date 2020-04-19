@@ -1,5 +1,7 @@
 package com.electivaIII.sistemainventario.fragments.AccesoriosFile;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,7 +21,7 @@ import com.electivaIII.sistemainventario.fragments.ListUbicaciones;
  * A simple {@link Fragment} subclass.
  */
 public class DetalleAccesorios extends Fragment {
-
+    Boolean language=false;
     public DetalleAccesorios() {
         // Required empty public constructor
     }
@@ -46,6 +48,13 @@ public class DetalleAccesorios extends Fragment {
 
         txtNameAccesorioDescription.setText(name);
         imgAccesorioDetalle.setImageResource(image);
+
+        SharedPreferences idioma = getActivity().getSharedPreferences("idioma", Context.MODE_PRIVATE);
+        language = idioma.getBoolean("trueIdioma",false);
+        if (language==true){
+            btnUbicacionDetalleAccesorio.setText("Location");
+        }
+
 
         btnUbicacionDetalleAccesorio.setOnClickListener(new View.OnClickListener() {
             @Override

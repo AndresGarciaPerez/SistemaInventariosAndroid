@@ -21,17 +21,18 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/tvNoche"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Modo oscuro"
+                android:text="Modo noche"
                 android:textColor="#000000" />
 
             <Switch
                 android:id="@+id/sModoOscuro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="80dp" />
+                android:layout_marginRight="80dp"
+                android:checked="false" />
 
         </LinearLayout>
 
@@ -41,7 +42,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/tvSesion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mantener sesion activa"
@@ -61,14 +62,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/tvIngles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cambiar idioma a ingles"
                 android:textColor="#000000" />
 
             <Switch
-                android:id="@+id/switch2"
+                android:id="@+id/swIngles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="80dp" />
@@ -81,7 +82,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/tvPantalla"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar pantalla de inicio"
