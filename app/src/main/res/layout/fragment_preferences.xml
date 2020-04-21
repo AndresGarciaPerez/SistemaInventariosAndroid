@@ -4,95 +4,92 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
     android:clickable="true"
     android:focusable="true"
     tools:context=".fragments.Preferences">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvNoche"
-                android:layout_width="wrap_content"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:text="Modo noche"
-                android:textColor="#000000" />
+                android:text="Modo noche" />
 
             <Switch
                 android:id="@+id/sModoOscuro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="80dp"
+                android:layout_marginLeft="100dp"
                 android:checked="false" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvSesion"
-                android:layout_width="wrap_content"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:text="Mantener sesion activa"
-                android:textColor="#000000" />
+                android:text="Mantener sesion activa" />
 
             <Switch
                 android:id="@+id/switch3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="80dp" />
+                android:layout_marginLeft="100dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvIngles"
-                android:layout_width="wrap_content"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:text="Cambiar idioma a ingles"
-                android:textColor="#000000" />
+                android:text="Cambiar idioma a ingles" />
 
             <Switch
                 android:id="@+id/swIngles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="80dp" />
+                android:layout_marginLeft="100dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tvPantalla"
-                android:layout_width="wrap_content"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:text="Seleccionar pantalla de inicio"
-                android:textColor="#000000" />
+                android:text="Seleccionar pantalla de inicio" />
 
             <Switch
                 android:id="@+id/switch1"
+                style="@style/AppTheme.PopupOverlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="80dp" />
+                android:layout_marginLeft="100dp" />
 
         </LinearLayout>
     </LinearLayout>
