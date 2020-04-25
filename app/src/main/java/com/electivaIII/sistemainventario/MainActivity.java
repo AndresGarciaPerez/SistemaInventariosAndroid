@@ -130,19 +130,26 @@ public class MainActivity extends AppCompatActivity {
                 if (tabsName.size() == 3){
                     tabsName.remove(2);
                 }
-
-                tabsName.add("Cambiar contraseña");
-                UpdateTabActivity(fragment);
-
+                if (language==true){
+                    tabsName.add("Change password");
+                    UpdateTabActivity(fragment);
+                } else if(language==false){
+                    tabsName.add("Cambiar contraseña");
+                    UpdateTabActivity(fragment);
+                }
                 break;
             case R.id.preferences:
                 fragment = new Preferences();
                 if (tabsName.size() == 3){
                     tabsName.remove(2);
                 }
-                tabsName.add("Preferencias");
-                UpdateTabActivity(fragment);
-
+                if (language==true){
+                    tabsName.add("Preferences");
+                    UpdateTabActivity(fragment);
+                } else if(language==false){
+                    tabsName.add("Preferencias");
+                    UpdateTabActivity(fragment);
+                }
                 break;
             case R.id.logout:
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);

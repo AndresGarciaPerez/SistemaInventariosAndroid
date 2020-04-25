@@ -31,6 +31,9 @@ public class ChangePassword extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (container!=null){
+            container.removeAllViews();
+        }
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_change_password, container, false);
         btnConfirmar = v.findViewById(R.id.btnConfirmar);

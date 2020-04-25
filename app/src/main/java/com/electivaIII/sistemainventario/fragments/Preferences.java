@@ -48,7 +48,7 @@ public class Preferences extends Fragment {
         inglesSwitch = v.findViewById(R.id.swIngles);
         tvNoche = v.findViewById(R.id.tvNoche);
         tvIngles = v.findViewById(R.id.tvIngles);
-        tvPantalla = v.findViewById(R.id.tvPantalla);
+        //tvPantalla = v.findViewById(R.id.tvPantalla);
         tvSesion = v.findViewById(R.id.tvSesion);
 
         SharedPreferences idioma = getActivity().getSharedPreferences("idioma",Context.MODE_PRIVATE);
@@ -57,8 +57,7 @@ public class Preferences extends Fragment {
             tvNoche.setText("DarkMode");
             tvSesion.setText("keep session active");
             tvIngles.setText("change to Spanish");
-            tvPantalla.setText("Select start view");
-
+           // tvPantalla.setText("Select start view");
         }
 
 
@@ -77,7 +76,7 @@ public class Preferences extends Fragment {
                     tvNoche.setText("Modo noche");
                     tvSesion.setText("Mantener sesion activa");
                     tvIngles.setText("Cambiar a idioma ingles");
-                    tvPantalla.setText("Seleccionar pantalla de inicio");
+                   // tvPantalla.setText("Seleccionar pantalla de inicio");
 
                     SharedPreferences idioma = getActivity().getSharedPreferences("idioma",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = idioma.edit();
