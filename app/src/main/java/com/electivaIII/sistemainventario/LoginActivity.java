@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.electivaIII.sistemainventario.fragments.Preferences;
 
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText etCorreo;
     Preferences preferences;
     Boolean estado=false, language=false;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,13 @@ public class LoginActivity extends AppCompatActivity {
         tvPassword = findViewById(R.id.tvPass);
         etCorreo = findViewById(R.id.etMail);
         setTitle("Login");
+
+        SharedPreferences sesionAct =  this.getSharedPreferences("sesionActiva", Context.MODE_PRIVATE);
+        token = sesionAct.getString("token","");
+        if (token!=""){
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        }
 
        SharedPreferences estad = this.getSharedPreferences("estado",Context.MODE_PRIVATE);
        estado = estad.getBoolean("true",false);
@@ -42,8 +51,6 @@ public class LoginActivity extends AppCompatActivity {
             btnIniciarSesion.setText("log In");
             etCorreo.setHint("Example@mail.com");
         }
-
-
 
 
         btnIniciarSesion.setOnClickListener(new View.OnClickListener() {

@@ -152,6 +152,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.logout:
+                SharedPreferences sesionActiva = this.getSharedPreferences("sesionActiva",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sesionActiva.edit();
+                editor.putString("token","");
+                editor.apply();
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(i);
                 this.finish();

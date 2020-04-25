@@ -14,7 +14,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
-import com.electivaIII.sistemainventario.LoginActivity;
 import com.electivaIII.sistemainventario.MainActivity;
 import com.electivaIII.sistemainventario.R;
 
@@ -31,9 +30,10 @@ public class Preferences extends Fragment {
         // Required empty public constructor
     }
     public Switch aSwitch;
-    public Switch inglesSwitch;
+    public Switch inglesSwitch, sesionActivaSwitch;
     private TextView tvNoche, tvIngles, tvPantalla, tvSesion;
     private  Boolean estadoIdioma;
+    String sesion;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +46,7 @@ public class Preferences extends Fragment {
         sharedPreferences = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         aSwitch = v.findViewById(R.id.sModoOscuro);
         inglesSwitch = v.findViewById(R.id.swIngles);
+        sesionActivaSwitch = v.findViewById(R.id.swSesion);
         tvNoche = v.findViewById(R.id.tvNoche);
         tvIngles = v.findViewById(R.id.tvIngles);
         //tvPantalla = v.findViewById(R.id.tvPantalla);
@@ -53,6 +54,7 @@ public class Preferences extends Fragment {
 
         SharedPreferences idioma = getActivity().getSharedPreferences("idioma",Context.MODE_PRIVATE);
         estadoIdioma = idioma.getBoolean("trueIdioma",false);
+
         if (estadoIdioma==true){inglesSwitch.setChecked(true);
             tvNoche.setText("DarkMode");
             tvSesion.setText("keep session active");
@@ -60,12 +62,16 @@ public class Preferences extends Fragment {
            // tvPantalla.setText("Select start view");
         }
 
+        SharedPreferences sesionAct = getActivity().getSharedPreferences("sesionActiva",Context.MODE_PRIVATE);
+        sesion = sesionAct.getString("token","");
+        if(sesion!=""){
+            sesionActivaSwitch.setChecked(true);
+        }
 
         inglesSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-
                     SharedPreferences idioma = getActivity().getSharedPreferences("idioma",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = idioma.edit();
                     editor.putBoolean("trueIdioma",true);
@@ -88,10 +94,6 @@ public class Preferences extends Fragment {
                 }
             }
         });
-
-
-
-
         checkNightModeActivated();
 
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -118,6 +120,26 @@ public class Preferences extends Fragment {
                 }
             }
         });
+
+        sesionActivaSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    sesionActivaSwitch.setChecked(true);
+                    SharedPreferences sesionActiva = getActivity().getSharedPreferences("sesionActiva",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sesionActiva.edit();
+                    editor.putString("token","apiToken"); //En lugar de apiToken, debera ir el token generado por la Api
+                    editor.apply();
+                }else{
+                    SharedPreferences sesionActiva = getActivity().getSharedPreferences("sesionActiva",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sesionActiva.edit();
+                    editor.putString("token","");
+                    editor.apply();
+                }
+            }
+        });
+
+
         return v;
     }
 
