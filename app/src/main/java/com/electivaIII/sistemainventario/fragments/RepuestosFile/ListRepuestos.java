@@ -20,6 +20,7 @@ import com.electivaIII.sistemainventario.Adapters.AccesoriosAdapter;
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
+import com.electivaIII.sistemainventario.fragments.AccesoriosFile.ListAccesorios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,13 @@ public class ListRepuestos extends Fragment {
 
     TextView txtFindListRespuestos;
 
+
+
+    setInfoListRepuestos setInfoListRepuestos;
+
+    public interface setInfoListRepuestos {
+        void showdatadetailRepuestos(String name, String item, int image);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -95,7 +103,7 @@ public class ListRepuestos extends Fragment {
                 data.putInt("image", accesoriosRepuestosModelsList.get(position).getImage());
                 fragmentDetalle.setArguments(data);
 
-                ChangeFragment.changeFragment(R.id.frMainRepuestos, getActivity(), fragmentDetalle);
+                ChangeFragment.changeFragment(R.id.f_detalle_repuesto, getActivity(), fragmentDetalle);
 
 
             }
@@ -120,5 +128,10 @@ public class ListRepuestos extends Fragment {
         return v;
     }
 
+    @Override
+    public void onAttach(Context context){
+        setInfoListRepuestos=(setInfoListRepuestos) context;
+        super.onAttach(context);
+    }
 
 }

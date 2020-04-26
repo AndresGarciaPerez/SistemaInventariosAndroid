@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
@@ -60,13 +61,13 @@ public class DetalleRepuestos extends Fragment {
             @Override
             public void onClick(View v) {
 
-
                 Fragment fragmentListUbicaciones = new ListUbicaciones();
                 Bundle data = new Bundle();
-                data.putInt("frMain", R.id.frMainRepuestos);
+                data.putInt("frMain", R.id.f_detalle_repuesto);
                 fragmentListUbicaciones.setArguments(data);
 
-                ChangeFragment.changeFragment(R.id.frMainRepuestos, getActivity(), fragmentListUbicaciones);
+
+                ChangeFragment.changeFragment(R.id.f_detalle_repuesto, getActivity(), fragmentListUbicaciones);
             }
         });
 

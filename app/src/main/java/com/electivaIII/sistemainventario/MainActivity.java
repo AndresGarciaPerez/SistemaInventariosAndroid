@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.electivaIII.sistemainventario.fragments.AccesoriosFile.DetalleAccesorios;
+import com.electivaIII.sistemainventario.fragments.AccesoriosFile.ListAccesorios;
 import com.electivaIII.sistemainventario.fragments.ChangePassword;
 import com.electivaIII.sistemainventario.fragments.Preferences;
+import com.electivaIII.sistemainventario.fragments.RepuestosFile.DetalleRepuestos;
+import com.electivaIII.sistemainventario.fragments.RepuestosFile.ListRepuestos;
 import com.electivaIII.sistemainventario.ui.main.SectionsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -21,7 +25,8 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements ListAccesorios.setInfoListAccesorios, ListRepuestos.setInfoListRepuestos {
 
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -190,4 +195,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void showdatadetailAccess(String name, String item, int image) {
+
+        DetalleAccesorios changeDataFragment = new DetalleAccesorios();
+        Bundle args = new Bundle();
+        args.putString("name", name);
+        args.putString("item", item);
+        args.putInt("image", image);
+
+        changeDataFragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                .addToBackStack(null).replace(R.id.f_detalle_accesorio, changeDataFragment).commit();
+
+    }
+
+    @Override
+    public void showdatadetailRepuestos(String name, String item, int image) {
+        DetalleRepuestos changeDataFragment = new DetalleRepuestos();
+        Bundle args = new Bundle();
+        args.putString("name", name);
+        args.putString("item", item);
+        args.putInt("image", image);
+
+        changeDataFragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+                .addToBackStack(null).replace(R.id.f_detalle_repuesto, changeDataFragment).commit();
+    }
 }

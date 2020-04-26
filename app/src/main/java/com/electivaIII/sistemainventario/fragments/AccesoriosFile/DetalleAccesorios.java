@@ -62,10 +62,10 @@ public class DetalleAccesorios extends Fragment {
 
                 Fragment fragmentListUbicaciones = new ListUbicaciones();
                 Bundle data = new Bundle();
-                data.putInt("frMain", R.id.frMainAccesorio);
+                data.putInt("frMain", R.id.f_detalle_accesorio);
                 fragmentListUbicaciones.setArguments(data);
 
-                ChangeFragment.changeFragment(R.id.frMainAccesorio, getActivity(), fragmentListUbicaciones);
+                ChangeFragment.changeFragment(R.id.f_detalle_accesorio, getActivity(), fragmentListUbicaciones);
 
             }
         });

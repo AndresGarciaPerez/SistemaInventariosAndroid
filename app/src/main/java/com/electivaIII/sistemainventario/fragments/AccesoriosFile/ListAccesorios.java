@@ -39,6 +39,11 @@ public class ListAccesorios extends Fragment {
     AccesoriosRepuestosModel accesoriosRepuestosModel;
     TextView txtFindListAccesorios;
 
+    setInfoListAccesorios setInfoListAccesorios;
+
+    public interface setInfoListAccesorios {
+        void showdatadetailAccess(String name, String item, int image);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,14 +96,21 @@ public class ListAccesorios extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View
                     view, final int position, long id) {
-                Fragment fragmentDetalle = new DetalleAccesorios();
+                /*Fragment fragmentDetalle = new DetalleAccesorios();
                 Bundle data = new Bundle();
                 data.putString("name", accesoriosRepuestosModelsList.get(position).getName());
                 data.putString("item", accesoriosRepuestosModelsList.get(position).getItem());
                 data.putInt("image", accesoriosRepuestosModelsList.get(position).getImage());
                 fragmentDetalle.setArguments(data);
 
-                ChangeFragment.changeFragment(R.id.frMainAccesorio, getActivity(), fragmentDetalle);
+                ChangeFragment.changeFragment(R.id.frMainAccesorio, getActivity(), fragmentDetalle);*/
+
+
+                String name = accesoriosRepuestosModelsList.get(position).getName();
+                String item = accesoriosRepuestosModelsList.get(position).getItem();
+                int image = accesoriosRepuestosModelsList.get(position).getImage();
+                setInfoListAccesorios.showdatadetailAccess(name, item, image);
+
 
 
             }
@@ -123,7 +135,11 @@ public class ListAccesorios extends Fragment {
         return v;
     }
 
-
+    @Override
+    public void onAttach(Context context){
+        setInfoListAccesorios=(setInfoListAccesorios) context;
+        super.onAttach(context);
+    }
 
 
 }

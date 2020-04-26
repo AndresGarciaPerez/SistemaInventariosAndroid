@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FragContenedores.MainFragmentAccesorios">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <fragment
+            android:id="@+id/frMainAccesorio"
+            android:name="com.electivaIII.sistemainventario.fragments.AccesoriosFile.ListAccesorios"
+            android:layout_width="302dp"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/f_detalle_accesorio"
+            android:name="com.electivaIII.sistemainventario.fragments.ChangeDataFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</FrameLayout>
