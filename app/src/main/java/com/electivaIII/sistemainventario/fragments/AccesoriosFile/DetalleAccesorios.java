@@ -12,9 +12,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
+import com.electivaIII.sistemainventario.Utils.TypeOfDevice;
 import com.electivaIII.sistemainventario.fragments.ListUbicaciones;
 
 /**
@@ -62,10 +64,20 @@ public class DetalleAccesorios extends Fragment {
 
                 Fragment fragmentListUbicaciones = new ListUbicaciones();
                 Bundle data = new Bundle();
-                data.putInt("frMain", R.id.f_detalle_accesorio);
+                int fragmentMain;
+
+                if (new TypeOfDevice().isMovil()) {
+
+                    fragmentMain = R.id.frMainAccesorio;
+                } else {
+
+                    fragmentMain = R.id.f_detalle_accesorio;
+                }
+
+                data.putInt("frMain", fragmentMain);
                 fragmentListUbicaciones.setArguments(data);
 
-                ChangeFragment.changeFragment(R.id.f_detalle_accesorio, getActivity(), fragmentListUbicaciones);
+                ChangeFragment.changeFragment(fragmentMain, getActivity(), fragmentListUbicaciones);
 
             }
         });

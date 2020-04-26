@@ -20,6 +20,7 @@ import com.electivaIII.sistemainventario.Adapters.AccesoriosAdapter;
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
+import com.electivaIII.sistemainventario.Utils.TypeOfDevice;
 import com.electivaIII.sistemainventario.fragments.AccesoriosFile.ListAccesorios;
 
 import java.util.ArrayList;
@@ -103,7 +104,18 @@ public class ListRepuestos extends Fragment {
                 data.putInt("image", accesoriosRepuestosModelsList.get(position).getImage());
                 fragmentDetalle.setArguments(data);
 
-                ChangeFragment.changeFragment(R.id.f_detalle_repuesto, getActivity(), fragmentDetalle);
+
+                Fragment fragment = getFragmentManager().findFragmentById(R.id.f_detalle_repuesto);
+                if (fragment == null) {
+
+                    new TypeOfDevice(true);
+
+                    ChangeFragment.changeFragment(R.id.frMainRepuestos, getActivity(), fragmentDetalle);
+
+                } else {
+                    new TypeOfDevice(false);
+                    ChangeFragment.changeFragment(R.id.f_detalle_repuesto, getActivity(), fragmentDetalle);
+                }
 
 
             }

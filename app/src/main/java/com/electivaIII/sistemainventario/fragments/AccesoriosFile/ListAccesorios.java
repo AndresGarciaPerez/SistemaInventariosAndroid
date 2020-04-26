@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,11 +16,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.electivaIII.sistemainventario.Adapters.AccesoriosAdapter;
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
+import com.electivaIII.sistemainventario.Utils.TypeOfDevice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,20 +99,24 @@ public class ListAccesorios extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View
                     view, final int position, long id) {
-                /*Fragment fragmentDetalle = new DetalleAccesorios();
+                Fragment fragmentDetalle = new DetalleAccesorios();
                 Bundle data = new Bundle();
                 data.putString("name", accesoriosRepuestosModelsList.get(position).getName());
                 data.putString("item", accesoriosRepuestosModelsList.get(position).getItem());
                 data.putInt("image", accesoriosRepuestosModelsList.get(position).getImage());
                 fragmentDetalle.setArguments(data);
 
-                ChangeFragment.changeFragment(R.id.frMainAccesorio, getActivity(), fragmentDetalle);*/
+                Fragment fragment = getFragmentManager().findFragmentById(R.id.f_detalle_accesorio);
+                if (fragment == null) {
 
+                    new TypeOfDevice(true);
 
-                String name = accesoriosRepuestosModelsList.get(position).getName();
-                String item = accesoriosRepuestosModelsList.get(position).getItem();
-                int image = accesoriosRepuestosModelsList.get(position).getImage();
-                setInfoListAccesorios.showdatadetailAccess(name, item, image);
+                    ChangeFragment.changeFragment(R.id.frMainAccesorio, getActivity(), fragmentDetalle);
+
+                } else {
+                    new TypeOfDevice(false);
+                    ChangeFragment.changeFragment(R.id.f_detalle_accesorio, getActivity(), fragmentDetalle);
+                }
 
 
 
