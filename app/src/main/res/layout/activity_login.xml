@@ -26,6 +26,7 @@
             android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="Correo@mail.com"
+            android:text="kevin@electiva.com"
             android:inputType="textPersonName" />
 
         <EditText
@@ -34,7 +35,17 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="**********"
-            android:inputType="textPersonName" />
+            android:text="secret"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/txtShowError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textColor="#C62828" />
 
         <Button
             android:id="@+id/btnIniciarSesion"
@@ -52,5 +63,6 @@
             android:layout_marginTop="20dp"
             android:gravity="center|center_horizontal"
             android:text="Olvide mi contraseña" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
