@@ -174,16 +174,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
                 NetworkResponse response = error.networkResponse;
-                String json = new String(response.data);
+                if (response != null) {
 
-                Log.i("VOLLEY", json);
-                if (error.networkResponse.statusCode == 400) {
-                    txtShowError.setText("Credentials invalid, try out again");
-                } else {
+                    String json = new String(response.data);
 
-                    txtShowError.setText("Something went wrong try again later, or contact you with the administrator");
-
+                    Log.i("VOLLEY", json);
+                    if (error.networkResponse.statusCode == 400) {
+                        txtShowError.setText("Credentials invalid, try out again");
+                    }
                 }
+                txtShowError.setText("Something went wrong try again later, or contact you with the administrator");
+
 
                 progressDialog.dismiss();
 
@@ -193,4 +194,6 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
 
     }
+
+
 }

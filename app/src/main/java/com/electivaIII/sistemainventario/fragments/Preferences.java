@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.electivaIII.sistemainventario.MainActivity;
+import com.electivaIII.sistemainventario.Models.Sesion;
 import com.electivaIII.sistemainventario.R;
 
 /**
@@ -124,11 +125,12 @@ public class Preferences extends Fragment {
         sesionActivaSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Sesion sesion = new Sesion();
                 if (isChecked){
                     sesionActivaSwitch.setChecked(true);
                     SharedPreferences sesionActiva = getActivity().getSharedPreferences("sesionActiva",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sesionActiva.edit();
-                    editor.putString("token","apiToken"); //En lugar de apiToken, debera ir el token generado por la Api
+                    editor.putString("token",sesion.getToken()); //En lugar de apiToken, debera ir el token generado por la Api
                     editor.apply();
                 }else{
                     SharedPreferences sesionActiva = getActivity().getSharedPreferences("sesionActiva",Context.MODE_PRIVATE);
