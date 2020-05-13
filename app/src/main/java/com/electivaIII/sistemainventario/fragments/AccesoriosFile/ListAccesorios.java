@@ -31,6 +31,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.electivaIII.sistemainventario.Adapters.AccesoriosAdapter;
 import com.electivaIII.sistemainventario.MainActivity;
+import com.electivaIII.sistemainventario.Models.Accesorio;
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
 import com.electivaIII.sistemainventario.Models.Sesion;
 import com.electivaIII.sistemainventario.R;
@@ -66,6 +67,10 @@ public class ListAccesorios extends Fragment {
     Sesion sesion;
     setInfoListAccesorios setInfoListAccesorios;
 
+    List<Accesorio> accesoriosModel = new ArrayList<>();
+    Accesorio accesorio;
+
+    JSONArray allInventories = new JSONArray();
 
     public interface setInfoListAccesorios {
         void showdatadetailAccess(String name, String item, int image);
@@ -113,11 +118,22 @@ public class ListAccesorios extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View
                     view, final int position, long id) {
+
+
+
                 Fragment fragmentDetalle = new DetalleAccesorios();
                 Bundle data = new Bundle();
-                data.putString("name", accesoriosRepuestosModelsList.get(position).getName());
-                data.putString("item", accesoriosRepuestosModelsList.get(position).getItem());
-                data.putString("image", accesoriosRepuestosModelsList.get(position).getImage());
+                data.putInt("inventorie_id", accesoriosModel.get(position).getInventorie_id());
+                data.putInt("quantity", accesoriosModel.get(position).getQuantity());
+
+                data.putInt("warehouse_id", accesoriosModel.get(position).getWarehouse_id());
+                data.putString("warehouse", accesoriosModel.get(position).getWarehouse());
+
+                data.putString("name", accesoriosModel.get(position).getName());
+                data.putString("image", accesoriosModel.get(position).getImage());
+                data.putInt("product_id", accesoriosModel.get(position).getProduct_id());
+                data.putString("product_code", accesoriosModel.get(position).getProduct_code());
+
                 fragmentDetalle.setArguments(data);
 
                 Fragment fragment = getFragmentManager().findFragmentById(R.id.f_detalle_accesorio);
@@ -131,6 +147,8 @@ public class ListAccesorios extends Fragment {
                     new TypeOfDevice(false);
                     ChangeFragment.changeFragment(R.id.f_detalle_accesorio, getActivity(), fragmentDetalle);
                 }
+
+
 
 
             }
@@ -188,6 +206,11 @@ public class ListAccesorios extends Fragment {
             @Override
             public void onResponse(JSONArray response) {
 
+
+                if (allInventories.length() == 0) {
+                    allInventories.put(response);
+                }
+
                 ArrayList names = new ArrayList<>();
                 ArrayList disponibles = new ArrayList<>();
                 ArrayList images = new ArrayList<>();
@@ -196,17 +219,31 @@ public class ListAccesorios extends Fragment {
 
                     for (int i=0; i< response.length(); i++) {
                         try {
+
                             JSONObject jsonObject = response.getJSONObject(i);
-                            String quantity = jsonObject.getString("quantity");
+                            int inventorie_id = jsonObject.getInt("id");
+                            int quantity = jsonObject.getInt("quantity");
+
+                            JSONObject warehouse = jsonObject.getJSONObject("warehouse");
+                            int warehouse_id = warehouse.getInt("id");
+                            String warehousename = warehouse.getString("name");
+
 
                             JSONObject product = jsonObject.getJSONObject("product");
-
+                            int product_id = product.getInt("id");
                             String name = product.getString("name");
+                            String product_code = product.getString("product_code");
+
                             String image = product.getString("image");
 
                             if (image.isEmpty()) {
                                 image = "https://via.placeholder.com/500";
                             }
+
+                            accesorio = new Accesorio(inventorie_id, quantity, warehouse_id, warehousename, product_id,
+                                    name, image, product_code);
+
+                            accesoriosModel.add(accesorio);
 
                             names.add(name);
                             disponibles.add(quantity);
