@@ -1,6 +1,7 @@
 package com.electivaIII.sistemainventario.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
 import com.electivaIII.sistemainventario.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +69,13 @@ public class AccesoriosAdapter extends BaseAdapter implements Filterable {
 
         tvTitulo.setText(accesoriosRepuestosModelsList.get(position).getName());
         tvSubTitulo.setText(accesoriosRepuestosModelsList.get(position).getItem());
-        imgImagenes.setImageResource(accesoriosRepuestosModelsList.get(position).getImage());
+        //imgImagenes.setImageResource(accesoriosRepuestosModelsList.get(position).getImage());
+        String imageUrl = "https://via.placeholder.com/500";
+
+        String imageUrlr = accesoriosRepuestosModelsList.get(position).getImage();
+
+
+        Picasso.get().load(imageUrlr).placeholder(R.drawable.progress_animation).into(imgImagenes);
         return v;
     }
 

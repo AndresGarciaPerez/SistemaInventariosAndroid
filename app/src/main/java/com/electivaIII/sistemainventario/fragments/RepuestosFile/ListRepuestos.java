@@ -74,10 +74,10 @@ public class ListRepuestos extends Fragment {
                 "item 6"
         };
 
-        int[] images = {
-                R.drawable.ejemplo2,
-                R.drawable.baterias7,
-                R.drawable.simgalaxys8,
+        String[] images = {
+                "https://via.placeholder.com/500",
+                "https://via.placeholder.com/500",
+                "https://via.placeholder.com/500"
         };
 
         for (int i=0; i<name.length; i ++){
@@ -101,7 +101,7 @@ public class ListRepuestos extends Fragment {
                 Bundle data = new Bundle();
                 data.putString("name", accesoriosRepuestosModelsList.get(position).getName());
                 data.putString("item", accesoriosRepuestosModelsList.get(position).getItem());
-                data.putInt("image", accesoriosRepuestosModelsList.get(position).getImage());
+                data.putString("image", accesoriosRepuestosModelsList.get(position).getImage());
                 fragmentDetalle.setArguments(data);
 
 

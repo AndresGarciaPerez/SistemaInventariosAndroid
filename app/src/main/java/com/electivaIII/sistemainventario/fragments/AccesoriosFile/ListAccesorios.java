@@ -110,7 +110,8 @@ public class ListAccesorios extends Fragment {
 
         for (int i=0; i<name.size(); i ++){
 
-            accesoriosRepuestosModel = new AccesoriosRepuestosModel(name.get(i).toString(), disponibles.get(i).toString(), Integer.valueOf(images.get(i).toString()));
+            accesoriosRepuestosModel = new AccesoriosRepuestosModel(name.get(i).toString(),
+                    disponibles.get(i).toString(), images.get(i).toString());
             accesoriosRepuestosModelsList.add(accesoriosRepuestosModel);
         }
 
@@ -130,7 +131,7 @@ public class ListAccesorios extends Fragment {
                 Bundle data = new Bundle();
                 data.putString("name", accesoriosRepuestosModelsList.get(position).getName());
                 data.putString("item", accesoriosRepuestosModelsList.get(position).getItem());
-                data.putInt("image", accesoriosRepuestosModelsList.get(position).getImage());
+                data.putString("image", accesoriosRepuestosModelsList.get(position).getImage());
                 fragmentDetalle.setArguments(data);
 
                 Fragment fragment = getFragmentManager().findFragmentById(R.id.f_detalle_accesorio);
@@ -201,10 +202,15 @@ public class ListAccesorios extends Fragment {
                             JSONObject product = jsonObject.getJSONObject("product");
 
                             String name = product.getString("name");
+                            String image = product.getString("image");
+
+                            if (image.isEmpty()) {
+                                image = "https://via.placeholder.com/500";
+                            }
 
                             names.add(name);
                             disponibles.add(quantity);
-                            images.add(R.drawable.baterias7);
+                            images.add(image);
 
 
                          } catch (JSONException e) {

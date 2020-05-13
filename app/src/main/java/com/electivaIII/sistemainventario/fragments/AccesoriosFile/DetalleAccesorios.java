@@ -18,6 +18,7 @@ import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 import com.electivaIII.sistemainventario.Utils.TypeOfDevice;
 import com.electivaIII.sistemainventario.fragments.ListUbicaciones;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,7 +50,10 @@ public class DetalleAccesorios extends Fragment {
         btnUbicacionDetalleAccesorio = v.findViewById(R.id.btnUbicacionDetalleAccesorio);
 
         txtNameAccesorioDescription.setText(name);
-        imgAccesorioDetalle.setImageResource(image);
+        String imageUrl = "https://via.placeholder.com/500";
+        Picasso.get().load(imageUrl).into(imgAccesorioDetalle);
+
+        //imgAccesorioDetalle.setImageResource(image);
 
         SharedPreferences idioma = getActivity().getSharedPreferences("idioma", Context.MODE_PRIVATE);
         language = idioma.getBoolean("trueIdioma",false);

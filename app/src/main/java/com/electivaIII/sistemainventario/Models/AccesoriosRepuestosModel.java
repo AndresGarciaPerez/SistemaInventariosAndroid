@@ -6,10 +6,10 @@ import java.util.List;
 public class AccesoriosRepuestosModel {
     private String name;
     private String item;
-    private int image;
+    private String image;
     private static List accesorios = new ArrayList<>();
 
-    public AccesoriosRepuestosModel(String name, String item, int image) {
+    public AccesoriosRepuestosModel(String name, String item, String image) {
         this.name = name;
         this.item = item;
         this.image = image;
@@ -28,7 +28,7 @@ public class AccesoriosRepuestosModel {
         this.item = item;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
