@@ -74,11 +74,15 @@ public class ListUbicaciones extends Fragment {
             warehousesLat = bundle.getStringArrayList("warehousesLat");
             warehousesLong = bundle.getStringArrayList("warehousesLong");
 
-            for (int i=0; i<warehousesName.size(); i++) {
-                ubicacion = new Ubicacion(warehousesName.get(i), warehousesAddress.get(i), Double.parseDouble(warehousesLat.get(i)), Double.parseDouble(warehousesLong.get(i)));
-                ubicacionesArray.add(ubicacion);
 
+            if (ubicacionesArray.size() == 0) {
+                for (int i=0; i<warehousesName.size(); i++) {
+                    ubicacion = new Ubicacion(warehousesName.get(i), warehousesAddress.get(i), Double.parseDouble(warehousesLat.get(i)), Double.parseDouble(warehousesLong.get(i)));
+                    ubicacionesArray.add(ubicacion);
+
+                }
             }
+
         }
 
 

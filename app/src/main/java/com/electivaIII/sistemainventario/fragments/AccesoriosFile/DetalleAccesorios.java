@@ -123,7 +123,8 @@ public class DetalleAccesorios extends Fragment {
 
         btnUbicacionDetalleAccesorio.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { 
+            public void onClick(View view) {
+
 
                 HTTPaccesories();
 
@@ -170,21 +171,27 @@ public class DetalleAccesorios extends Fragment {
                             JSONObject product = response.getJSONObject("product");
                             JSONArray warehousearray = product.getJSONArray("warehouse");
 
-                            for (int w=0; w<warehousearray.length(); w++) {
 
-                                JSONObject jsonObjectWarehouse = warehousearray.getJSONObject(w);
-                                String objectNameWarehouse = jsonObjectWarehouse.getString("name");
-                                String objectAddressWarehouse = jsonObjectWarehouse.getString("address");
-                                String objectLatWarehouse = jsonObjectWarehouse.getString("lat");
-                                String objectLongWarehouse = jsonObjectWarehouse.getString("long");
+                            Log.i("total", warehousesName.size()+"");
+                            if (warehousesName.size() == 0) {
+                                for (int w=0; w<warehousearray.length(); w++) {
 
-                                warehousesName.add(objectNameWarehouse);
-                                warehousesAddress.add(objectAddressWarehouse);
-                                warehousesLat.add(objectLatWarehouse);
-                                warehousesLong.add(objectLongWarehouse);
+                                    JSONObject jsonObjectWarehouse = warehousearray.getJSONObject(w);
+                                    String objectNameWarehouse = jsonObjectWarehouse.getString("name");
+                                    String objectAddressWarehouse = jsonObjectWarehouse.getString("address");
+                                    String objectLatWarehouse = jsonObjectWarehouse.getString("lat");
+                                    String objectLongWarehouse = jsonObjectWarehouse.getString("long");
 
+                                    warehousesName.add(objectNameWarehouse);
+                                    warehousesAddress.add(objectAddressWarehouse);
+                                    warehousesLat.add(objectLatWarehouse);
+                                    warehousesLong.add(objectLongWarehouse);
+
+
+                                }
 
                             }
+
                             Fragment fragmentListUbicaciones = new ListUbicaciones();
 
                             Log.i("sizewarehouses", warehousesName.size()+"");
