@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.os.Parcelable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -34,6 +35,7 @@ import com.electivaIII.sistemainventario.MainActivity;
 import com.electivaIII.sistemainventario.Models.Accesorio;
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
 import com.electivaIII.sistemainventario.Models.Sesion;
+import com.electivaIII.sistemainventario.Models.Ubicacion;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 import com.electivaIII.sistemainventario.Utils.TypeOfDevice;
@@ -66,7 +68,12 @@ public class ListAccesorios extends Fragment {
     Sesion sesion;
 
     List<Accesorio> accesoriosModel = new ArrayList<>();
+    ArrayList<String> warehousesName = new ArrayList<>();
+    ArrayList<String> warehousesAddress = new ArrayList<>();
+    ArrayList<String> warehousesLat = new ArrayList<>();
+    ArrayList<String> warehousesLong = new ArrayList<>();
     Accesorio accesorio;
+
 
 
     @Override
@@ -118,6 +125,10 @@ public class ListAccesorios extends Fragment {
                 data.putString("image", accesoriosModel.get(position).getImage());
                 data.putInt("product_id", accesoriosModel.get(position).getProduct_id());
                 data.putString("product_code", accesoriosModel.get(position).getProduct_code());
+                data.putStringArrayList("warehousesName", warehousesName);
+                data.putStringArrayList("warehousesAddress", warehousesAddress);
+                data.putStringArrayList("warehousesLat", warehousesLat);
+                data.putStringArrayList("warehousesLong", warehousesLong);
 
                 fragmentDetalle.setArguments(data);
 
@@ -213,6 +224,23 @@ public class ListAccesorios extends Fragment {
 
                             String image = product.getString("image");
 
+                            JSONArray warehousearray = product.getJSONArray("warehouse");
+
+                            for (int w=0; w<warehousearray.length(); w++) {
+
+                                JSONObject jsonObjectWarehouse = warehousearray.getJSONObject(i);
+                                String objectNameWarehouse = jsonObjectWarehouse.getString("name");
+                                String objectAddressWarehouse = jsonObjectWarehouse.getString("address");
+                                String objectLatWarehouse = jsonObjectWarehouse.getString("lat");
+                                String objectLongWarehouse = jsonObjectWarehouse.getString("long");
+
+                                warehousesName.add(objectNameWarehouse);
+                                warehousesAddress.add(objectAddressWarehouse);
+                                warehousesLat.add(objectLatWarehouse);
+                                warehousesLong.add(objectLongWarehouse);
+
+
+                            }
                             if (image.isEmpty()) {
                                 image = "https://via.placeholder.com/500";
                             }

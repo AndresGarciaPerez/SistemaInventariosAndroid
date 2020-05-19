@@ -20,6 +20,8 @@ import com.electivaIII.sistemainventario.Utils.TypeOfDevice;
 import com.electivaIII.sistemainventario.fragments.ListUbicaciones;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -32,6 +34,13 @@ public class DetalleAccesorios extends Fragment {
     TextView txtNameAccesorioDescription, txtquantity, txtalmacen, txtCodigo;
     ImageView imgAccesorioDetalle;
     Button btnUbicacionDetalleAccesorio;
+
+
+    ArrayList<String> warehousesName = new ArrayList<>();
+    ArrayList<String> warehousesAddress = new ArrayList<>();
+    ArrayList<String> warehousesLat = new ArrayList<>();
+    ArrayList<String> warehousesLong = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,6 +80,11 @@ public class DetalleAccesorios extends Fragment {
             name = bundle.getString("name");
             image = bundle.getString("image");
             product_code = bundle.getString("product_code");
+
+            warehousesName = bundle.getStringArrayList("warehousesName");
+            warehousesAddress = bundle.getStringArrayList("warehousesAddress");
+            warehousesLat = bundle.getStringArrayList("warehousesLat");
+            warehousesLong = bundle.getStringArrayList("warehousesLong");
         }
 
         txtquantity.setText(String.valueOf(quantity));
@@ -97,6 +111,7 @@ public class DetalleAccesorios extends Fragment {
             public void onClick(View view) {
 
                 Fragment fragmentListUbicaciones = new ListUbicaciones();
+
                 Bundle data = new Bundle();
                 int fragmentMain;
 
@@ -109,6 +124,10 @@ public class DetalleAccesorios extends Fragment {
                 }
 
                 data.putInt("frMain", fragmentMain);
+                data.putStringArrayList("warehousesName", warehousesName);
+                data.putStringArrayList("warehousesAddress", warehousesAddress);
+                data.putStringArrayList("warehousesLat", warehousesLat);
+                data.putStringArrayList("warehousesLong", warehousesLong);
                 fragmentListUbicaciones.setArguments(data);
 
                 ChangeFragment.changeFragment(fragmentMain, getActivity(), fragmentListUbicaciones);
