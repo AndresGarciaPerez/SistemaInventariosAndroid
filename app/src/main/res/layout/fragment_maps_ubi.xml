@@ -33,22 +33,11 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/txtAlmacenDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Dirección: Avenida#, Calle#, Col. x, San Salvador" />
 
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ubicacion: Estanteria 5, 2º piso, slot 9" />
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Unidades disponibles: 20" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

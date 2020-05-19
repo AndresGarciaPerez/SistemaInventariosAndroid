@@ -67,6 +67,7 @@ public class AccesoriosAdapter extends BaseAdapter implements Filterable {
         tvTitulo = (TextView)v.findViewById(R.id.tvTitulo);
         tvSubTitulo = (TextView)v.findViewById(R.id.tvSubTitulo);
         imgImagenes = (ImageView)v.findViewById(R.id.imgImagenes);
+        Log.i("name", accesoriosRepuestosModelsList.get(position).getName());
 
         tvTitulo.setText(accesoriosRepuestosModelsList.get(position).getName());
         tvSubTitulo.setText(String.valueOf(accesoriosRepuestosModelsList.get(position).getQuantity()));

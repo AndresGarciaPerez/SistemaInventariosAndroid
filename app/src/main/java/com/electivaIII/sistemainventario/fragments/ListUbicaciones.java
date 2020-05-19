@@ -95,9 +95,8 @@ public class ListUbicaciones extends Fragment {
                 bundle.putDouble("latitud", ubicacionesArray.get(position).getLat());
                 bundle.putDouble("longitud", ubicacionesArray.get(position).getLon());
                 bundle.putString("almacen", ubicacionesArray.get(position).getName());
+                bundle.putString("direccion", ubicacionesArray.get(position).getAddress());
                 mapsUbi.setArguments(bundle);
-
-
 
                 ChangeFragment.changeFragment(frMain, getActivity(), mapsUbi);
 

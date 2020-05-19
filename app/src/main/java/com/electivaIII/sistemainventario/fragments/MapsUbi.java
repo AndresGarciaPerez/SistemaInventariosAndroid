@@ -59,8 +59,8 @@ public class MapsUbi extends Fragment implements OnMapReadyCallback {
     private static final int LOCATION_REQUEST = 500;
     Double latitud=0.0, longitud=0.0, myLatitud=0.0, myLongitud=0.0;
 
-    String almacen;
-    TextView txtAlmacenUbicacion;
+    String almacen, direccion;
+    TextView txtAlmacenUbicacion, txtAlmacenDireccion;
     Button btnSatelital, btnHibrido;
 
     private GoogleMap mMap;
@@ -156,6 +156,9 @@ public class MapsUbi extends Fragment implements OnMapReadyCallback {
             latitud = bundle.getDouble("latitud");
             longitud = bundle.getDouble("longitud");
             almacen = bundle.getString("almacen");
+            direccion = bundle.getString("direccion");
+            Log.i("direccion", direccion);
+
         }
     }
 
@@ -222,7 +225,9 @@ public class MapsUbi extends Fragment implements OnMapReadyCallback {
     public void setAttributeText(View v){
 
         txtAlmacenUbicacion = v.findViewById(R.id.txtAlmacenUbicacion);
+        txtAlmacenDireccion = v.findViewById(R.id.txtAlmacenDireccion);
         txtAlmacenUbicacion.setText("Almacen: "+almacen);
+        txtAlmacenDireccion.setText("Dirección: "+direccion);
     }
 
 
@@ -360,7 +365,7 @@ public class MapsUbi extends Fragment implements OnMapReadyCallback {
             if (polylineOptions!=null) {
                 mMap.addPolyline(polylineOptions);
             } else {
-                Toast.makeText(getContext(), "Poliline access denied!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Poliline access denied!", Toast.LENGTH_SHORT).show();
             }
 
         }
