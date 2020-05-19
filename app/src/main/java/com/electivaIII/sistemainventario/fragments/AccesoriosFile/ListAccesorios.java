@@ -225,23 +225,7 @@ public class ListAccesorios extends Fragment {
 
                             String image = product.getString("image");
 
-                            JSONArray warehousearray = product.getJSONArray("warehouse");
 
-                            for (int w=0; w<warehousearray.length(); w++) {
-
-                                JSONObject jsonObjectWarehouse = warehousearray.getJSONObject(i);
-                                String objectNameWarehouse = jsonObjectWarehouse.getString("name");
-                                String objectAddressWarehouse = jsonObjectWarehouse.getString("address");
-                                String objectLatWarehouse = jsonObjectWarehouse.getString("lat");
-                                String objectLongWarehouse = jsonObjectWarehouse.getString("long");
-
-                                warehousesName.add(objectNameWarehouse);
-                                warehousesAddress.add(objectAddressWarehouse);
-                                warehousesLat.add(objectLatWarehouse);
-                                warehousesLong.add(objectLongWarehouse);
-
-
-                            }
                             if (image.isEmpty()) {
                                 image = "https://via.placeholder.com/500";
                             }
