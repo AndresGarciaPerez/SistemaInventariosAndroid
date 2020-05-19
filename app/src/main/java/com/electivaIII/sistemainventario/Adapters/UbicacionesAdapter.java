@@ -10,6 +10,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.electivaIII.sistemainventario.Models.Ubicacion;
 import com.electivaIII.sistemainventario.Models.UbicacionesModel;
 import com.electivaIII.sistemainventario.R;
 
@@ -23,12 +24,12 @@ public class UbicacionesAdapter extends BaseAdapter implements Filterable {
     ImageView imgImagenes;
 
 
-    private List<UbicacionesModel> ubicacionesModelsList;
+    private List<Ubicacion> ubicacionesModelsList;
 
-    public List<UbicacionesModel> ubicacionesModels;
+    public List<Ubicacion> ubicacionesModels;
 
 
-    public UbicacionesAdapter(Context context, List<UbicacionesModel> ubicacionesModelsArray) {
+    public UbicacionesAdapter(Context context, List<Ubicacion> ubicacionesModelsArray) {
         this.context = context;
         this.ubicacionesModels = ubicacionesModelsArray;
         this.ubicacionesModelsList = ubicacionesModelsArray;
@@ -65,9 +66,9 @@ public class UbicacionesAdapter extends BaseAdapter implements Filterable {
         tvSubTitulo = (TextView)v.findViewById(R.id.tvSubTitulo);
         imgImagenes = (ImageView)v.findViewById(R.id.imgImagenes);
 
-        tvTitulo.setText(ubicacionesModels.get(position).getUbication_de_almacen());
-        tvSubTitulo.setText(ubicacionesModels.get(position).getCantidades());
-        imgImagenes.setImageResource(ubicacionesModels.get(position).getImage());
+        tvTitulo.setText(ubicacionesModels.get(position).getName());
+        tvSubTitulo.setText(ubicacionesModels.get(position).getAddress());
+        imgImagenes.setImageResource(R.drawable.ubicacion);
         return v;
     }
 
@@ -82,13 +83,13 @@ public class UbicacionesAdapter extends BaseAdapter implements Filterable {
                     filterResults.values = ubicacionesModelsList;
 
                 }else{
-                    List<UbicacionesModel> resultsModel = new ArrayList<>();
+                    List<Ubicacion> resultsModel = new ArrayList<>();
                     String searchStr = constraint.toString().toLowerCase();
 
-                    for(UbicacionesModel itemsModel:ubicacionesModelsList){
+                    for(Ubicacion itemsModel:ubicacionesModelsList){
 
-                        if(itemsModel.getUbication_de_almacen().toLowerCase().contains(searchStr)
-                                || itemsModel.getUbication_de_almacen().toLowerCase().startsWith(searchStr)){
+                        if(itemsModel.getName().toLowerCase().contains(searchStr)
+                                || itemsModel.getAddress().toLowerCase().startsWith(searchStr)){
 
                             resultsModel.add(itemsModel);
                         }
@@ -103,7 +104,7 @@ public class UbicacionesAdapter extends BaseAdapter implements Filterable {
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
 
-                ubicacionesModels = (List<UbicacionesModel>) results.values;
+                ubicacionesModels = (List<Ubicacion>) results.values;
                 notifyDataSetChanged();
             }
         };

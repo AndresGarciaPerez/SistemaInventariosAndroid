@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.electivaIII.sistemainventario.Adapters.UbicacionesAdapter;
+import com.electivaIII.sistemainventario.Models.Ubicacion;
 import com.electivaIII.sistemainventario.Models.UbicacionesModel;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
@@ -38,8 +39,16 @@ public class ListUbicaciones extends Fragment {
     int frMain = 0;
     TextView txtFindListLocation;
 
-    List<UbicacionesModel> ubicacionesModelsArray = new ArrayList<>();
-    UbicacionesModel ubicacionesModel;
+    List<Ubicacion> ubicacionesArray = new ArrayList<>();
+    Ubicacion ubicacion;
+
+
+
+    ArrayList<String> warehousesName = new ArrayList<>();
+    ArrayList<String> warehousesAddress = new ArrayList<>();
+    ArrayList<String> warehousesLat = new ArrayList<>();
+    ArrayList<String> warehousesLong = new ArrayList<>();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,61 +68,22 @@ public class ListUbicaciones extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             frMain = bundle.getInt("frMain");
-        }
 
-        final String[] almacenes = {
-                "San Salvador",
-                "Santa Ana",
-                "Santa Tecla",
-                "San Jacinto",
-                "Apopa"
-        };
-        int[] images = {
-            R.drawable.ubicacion,
-            R.drawable.ubicacion,
-            R.drawable.ubicacion,
-            R.drawable.ubicacion,
-            R.drawable.ubicacion,
-        };
+            warehousesName = bundle.getStringArrayList("warehousesName");
+            warehousesAddress = bundle.getStringArrayList("warehousesAddress");
+            warehousesLat = bundle.getStringArrayList("warehousesLat");
+            warehousesLong = bundle.getStringArrayList("warehousesLong");
 
-        String[] cantidades = {
-                "10",
-                "14",
-                "No disponible",
-                "1",
-                "34"
-        };
+            for (int i=0; i<warehousesName.size(); i++) {
+                ubicacion = new Ubicacion(warehousesName.get(i), warehousesAddress.get(i), Double.parseDouble(warehousesLat.get(i)), Double.parseDouble(warehousesLong.get(i)));
+                ubicacionesArray.add(ubicacion);
 
-        final double[] latitud = {
-                13.68935,
-                13.99417,
-                13.67694,
-                13.686014,
-                13.80722
-        };
-
-        final double[] longitud = {
-                -89.18718,
-                -89.55972,
-                -89.27972,
-                -89.1894223,
-                -89.17917
-        };
-
-        if (ubicacionesModelsArray.size() == 0){
-
-            for (int i= 0; i<almacenes.length; i++){
-                ubicacionesModel = new UbicacionesModel(almacenes[i], cantidades[i],
-                        images[i], latitud[i], longitud[i]);
-                ubicacionesModelsArray.add(ubicacionesModel);
             }
         }
 
 
-        Log.i("value", String.valueOf(ubicacionesModelsArray.size()));
-        Log.i("value", String.valueOf(ubicacionesModel.getUbicaciones().size()));
 
-        final UbicacionesAdapter ubicacionesAdapter = new UbicacionesAdapter(getContext(), ubicacionesModelsArray);
+        final UbicacionesAdapter ubicacionesAdapter = new UbicacionesAdapter(getContext(), ubicacionesArray);
         listUbicaciones.setAdapter(ubicacionesAdapter);
 
         listUbicaciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -122,9 +92,9 @@ public class ListUbicaciones extends Fragment {
                     view, final int position, long id) {
                 MapsUbi mapsUbi = new MapsUbi();
                 Bundle bundle = new Bundle();
-                bundle.putDouble("latitud", ubicacionesModelsArray.get(position).getLatitud());
-                bundle.putDouble("longitud", ubicacionesModelsArray.get(position).getLongitud());
-                bundle.putString("almacen", ubicacionesModelsArray.get(position).getUbication_de_almacen());
+                bundle.putDouble("latitud", ubicacionesArray.get(position).getLat());
+                bundle.putDouble("longitud", ubicacionesArray.get(position).getLon());
+                bundle.putString("almacen", ubicacionesArray.get(position).getName());
                 mapsUbi.setArguments(bundle);
 
 

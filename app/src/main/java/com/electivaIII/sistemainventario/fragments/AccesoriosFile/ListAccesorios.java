@@ -125,6 +125,7 @@ public class ListAccesorios extends Fragment {
                 data.putString("image", accesoriosModel.get(position).getImage());
                 data.putInt("product_id", accesoriosModel.get(position).getProduct_id());
                 data.putString("product_code", accesoriosModel.get(position).getProduct_code());
+
                 data.putStringArrayList("warehousesName", warehousesName);
                 data.putStringArrayList("warehousesAddress", warehousesAddress);
                 data.putStringArrayList("warehousesLat", warehousesLat);
