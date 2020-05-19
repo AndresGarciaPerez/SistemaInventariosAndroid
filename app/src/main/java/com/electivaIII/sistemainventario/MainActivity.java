@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements ListAccesorios.setInfoListAccesorios, ListRepuestos.setInfoListRepuestos {
+        implements ListRepuestos.setInfoListRepuestos {
 
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -194,23 +194,6 @@ public class MainActivity extends AppCompatActivity
                 .addToBackStack(null).replace(R.id.frMainConfiguration, fragment).commit();
     }
 
-
-    @Override
-    public void showdatadetailAccess(String name, String item, int image) {
-
-        DetalleAccesorios changeDataFragment = new DetalleAccesorios();
-        Bundle args = new Bundle();
-        args.putString("name", name);
-        args.putString("item", item);
-        args.putInt("image", image);
-
-        changeDataFragment.setArguments(args);
-
-        getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                .addToBackStack(null).replace(R.id.f_detalle_accesorio, changeDataFragment).commit();
-
-    }
 
     @Override
     public void showdatadetailRepuestos(String name, String item, int image) {

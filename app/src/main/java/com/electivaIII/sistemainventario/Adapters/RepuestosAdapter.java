@@ -1,7 +1,6 @@
 package com.electivaIII.sistemainventario.Adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.electivaIII.sistemainventario.Models.Accesorio;
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
 import com.electivaIII.sistemainventario.R;
 import com.squareup.picasso.Picasso;
@@ -19,19 +17,19 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccesoriosAdapter extends BaseAdapter implements Filterable {
+public class RepuestosAdapter extends BaseAdapter implements Filterable {
     private Context context;
 
-    private List<Accesorio> accesoriosRepuestosModelsList;
+    private List<AccesoriosRepuestosModel> accesoriosRepuestosModelsList;
 
-    public List<Accesorio> itemsAccesorioModel;
+    public List<AccesoriosRepuestosModel> itemsAccesorioModel;
     TextView tvTitulo;
     TextView tvSubTitulo;
     ImageView imgImagenes;
 
 
 
-    public AccesoriosAdapter(Context context, List<Accesorio> modelList) {
+    public RepuestosAdapter(Context context, List<AccesoriosRepuestosModel> modelList) {
         this.context = context;
         this.accesoriosRepuestosModelsList = modelList;
         this.itemsAccesorioModel = modelList;
@@ -69,9 +67,12 @@ public class AccesoriosAdapter extends BaseAdapter implements Filterable {
         imgImagenes = (ImageView)v.findViewById(R.id.imgImagenes);
 
         tvTitulo.setText(accesoriosRepuestosModelsList.get(position).getName());
-        tvSubTitulo.setText(String.valueOf(accesoriosRepuestosModelsList.get(position).getQuantity()));
+        tvSubTitulo.setText(accesoriosRepuestosModelsList.get(position).getItem());
+        //imgImagenes.setImageResource(accesoriosRepuestosModelsList.get(position).getImage());
+        String imageUrl = "https://via.placeholder.com/500";
 
         String imageUrlr = accesoriosRepuestosModelsList.get(position).getImage();
+
 
         Picasso.get().load(imageUrlr).placeholder(R.drawable.progress_animation).into(imgImagenes);
         return v;
@@ -89,10 +90,10 @@ public class AccesoriosAdapter extends BaseAdapter implements Filterable {
                     filterResults.values = itemsAccesorioModel;
 
                 }else{
-                    List<Accesorio> resultsModel = new ArrayList<>();
+                    List<AccesoriosRepuestosModel> resultsModel = new ArrayList<>();
                     String searchStr = constraint.toString().toLowerCase();
 
-                    for(Accesorio itemsModel:itemsAccesorioModel){
+                    for(AccesoriosRepuestosModel itemsModel:itemsAccesorioModel){
 
                         if(itemsModel.getName().toLowerCase().contains(searchStr)
                                 || itemsModel.getName().toLowerCase().startsWith(searchStr)){
@@ -110,7 +111,7 @@ public class AccesoriosAdapter extends BaseAdapter implements Filterable {
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
 
-                accesoriosRepuestosModelsList = (List<Accesorio>) results.values;
+                accesoriosRepuestosModelsList = (List<AccesoriosRepuestosModel>) results.values;
                 notifyDataSetChanged();
             }
         };

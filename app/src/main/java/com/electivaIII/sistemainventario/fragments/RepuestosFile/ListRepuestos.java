@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.electivaIII.sistemainventario.Adapters.AccesoriosAdapter;
+import com.electivaIII.sistemainventario.Adapters.RepuestosAdapter;
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
@@ -35,7 +36,7 @@ public class ListRepuestos extends Fragment {
         // Required empty public constructor
     }
     ListView listRepuestos;
-    AccesoriosAdapter accesoriosAdapter;
+    RepuestosAdapter accesoriosAdapter;
     List<AccesoriosRepuestosModel> accesoriosRepuestosModelsList = new ArrayList<>();
     AccesoriosRepuestosModel accesoriosRepuestosModel;
 
@@ -86,7 +87,7 @@ public class ListRepuestos extends Fragment {
             accesoriosRepuestosModelsList.add(accesoriosRepuestosModel);
         }
 
-        accesoriosAdapter = new AccesoriosAdapter(getContext(), accesoriosRepuestosModelsList);
+        accesoriosAdapter = new RepuestosAdapter(getContext(), accesoriosRepuestosModelsList);
 
         // LLenamos el modelo con la informacion
         accesoriosRepuestosModel.setAccesorios(accesoriosRepuestosModelsList);

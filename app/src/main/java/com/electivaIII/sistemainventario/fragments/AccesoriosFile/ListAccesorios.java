@@ -54,27 +54,21 @@ import static com.electivaIII.sistemainventario.Interfaces.Globals.BASE_URL;
  */
 public class ListAccesorios extends Fragment {
     Boolean language=false;
+
     public ListAccesorios() {
         // Required empty public constructor
     }
 
     ListView listAccesorios;
     AccesoriosAdapter accesoriosAdapter;
-    List<AccesoriosRepuestosModel> accesoriosRepuestosModelsList = new ArrayList<>();
-    AccesoriosRepuestosModel accesoriosRepuestosModel;
     TextView txtFindListAccesorios;
 
     Sesion sesion;
-    setInfoListAccesorios setInfoListAccesorios;
 
     List<Accesorio> accesoriosModel = new ArrayList<>();
     Accesorio accesorio;
 
-    JSONArray allInventories = new JSONArray();
 
-    public interface setInfoListAccesorios {
-        void showdatadetailAccess(String name, String item, int image);
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,19 +91,10 @@ public class ListAccesorios extends Fragment {
         return v;
     }
 
-    public void accesorios(ArrayList name, ArrayList disponibles, ArrayList images) {
+    public void accesorios() {
 
-        for (int i=0; i<name.size(); i ++){
 
-            accesoriosRepuestosModel = new AccesoriosRepuestosModel(name.get(i).toString(),
-                    disponibles.get(i).toString(), images.get(i).toString());
-            accesoriosRepuestosModelsList.add(accesoriosRepuestosModel);
-        }
-
-        accesoriosAdapter = new AccesoriosAdapter(getContext(), accesoriosRepuestosModelsList);
-
-        // LLenamos el modelo con la informacion
-        accesoriosRepuestosModel.setAccesorios(accesoriosRepuestosModelsList);
+        accesoriosAdapter = new AccesoriosAdapter(getContext(), accesoriosModel);
 
         listAccesorios.setAdapter(accesoriosAdapter);
 
@@ -173,7 +158,6 @@ public class ListAccesorios extends Fragment {
 
     @Override
     public void onAttach(Context context){
-        setInfoListAccesorios=(setInfoListAccesorios) context;
         super.onAttach(context);
     }
 
@@ -207,13 +191,6 @@ public class ListAccesorios extends Fragment {
             public void onResponse(JSONArray response) {
 
 
-                if (allInventories.length() == 0) {
-                    allInventories.put(response);
-                }
-
-                ArrayList names = new ArrayList<>();
-                ArrayList disponibles = new ArrayList<>();
-                ArrayList images = new ArrayList<>();
 
                 if (response.length() != 0) {
 
@@ -245,17 +222,13 @@ public class ListAccesorios extends Fragment {
 
                             accesoriosModel.add(accesorio);
 
-                            names.add(name);
-                            disponibles.add(quantity);
-                            images.add(image);
-
 
                          } catch (JSONException e) {
                             Log.e("error: ", e.toString());
                         }
                     }
 
-                    accesorios(names, disponibles, images);
+                    accesorios();
                 } else {
                     Toast.makeText(getActivity(), "Sin accesorios", Toast.LENGTH_SHORT).show();
                 }
