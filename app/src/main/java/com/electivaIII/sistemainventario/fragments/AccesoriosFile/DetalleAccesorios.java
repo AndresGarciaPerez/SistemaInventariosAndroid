@@ -187,7 +187,6 @@ public class DetalleAccesorios extends Fragment {
                                     warehousesLat.add(objectLatWarehouse);
                                     warehousesLong.add(objectLongWarehouse);
 
-
                                 }
 
                             }

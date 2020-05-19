@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.electivaIII.sistemainventario.Adapters.UbicacionesAdapter;
 import com.electivaIII.sistemainventario.Models.Ubicacion;
-import com.electivaIII.sistemainventario.Models.UbicacionesModel;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 

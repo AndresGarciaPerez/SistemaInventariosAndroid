@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.electivaIII.sistemainventario.Models.Ubicacion;
-import com.electivaIII.sistemainventario.Models.UbicacionesModel;
 import com.electivaIII.sistemainventario.R;
 
 import java.util.ArrayList;
