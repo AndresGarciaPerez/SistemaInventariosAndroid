@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
+import com.electivaIII.sistemainventario.Models.Repuesto;
 import com.electivaIII.sistemainventario.R;
 import com.squareup.picasso.Picasso;
 
@@ -20,16 +21,16 @@ import java.util.List;
 public class RepuestosAdapter extends BaseAdapter implements Filterable {
     private Context context;
 
-    private List<AccesoriosRepuestosModel> accesoriosRepuestosModelsList;
+    private List<Repuesto> accesoriosRepuestosModelsList;
 
-    public List<AccesoriosRepuestosModel> itemsAccesorioModel;
+    public List<Repuesto> itemsAccesorioModel;
     TextView tvTitulo;
     TextView tvSubTitulo;
     ImageView imgImagenes;
 
 
 
-    public RepuestosAdapter(Context context, List<AccesoriosRepuestosModel> modelList) {
+    public RepuestosAdapter(Context context, List<Repuesto> modelList) {
         this.context = context;
         this.accesoriosRepuestosModelsList = modelList;
         this.itemsAccesorioModel = modelList;
@@ -67,7 +68,7 @@ public class RepuestosAdapter extends BaseAdapter implements Filterable {
         imgImagenes = (ImageView)v.findViewById(R.id.imgImagenes);
 
         tvTitulo.setText(accesoriosRepuestosModelsList.get(position).getName());
-        tvSubTitulo.setText(accesoriosRepuestosModelsList.get(position).getItem());
+        tvSubTitulo.setText(accesoriosRepuestosModelsList.get(position).getQuantity()+"");
         //imgImagenes.setImageResource(accesoriosRepuestosModelsList.get(position).getImage());
         String imageUrl = "https://via.placeholder.com/500";
 
@@ -90,10 +91,10 @@ public class RepuestosAdapter extends BaseAdapter implements Filterable {
                     filterResults.values = itemsAccesorioModel;
 
                 }else{
-                    List<AccesoriosRepuestosModel> resultsModel = new ArrayList<>();
+                    List<Repuesto> resultsModel = new ArrayList<>();
                     String searchStr = constraint.toString().toLowerCase();
 
-                    for(AccesoriosRepuestosModel itemsModel:itemsAccesorioModel){
+                    for(Repuesto itemsModel:itemsAccesorioModel){
 
                         if(itemsModel.getName().toLowerCase().contains(searchStr)
                                 || itemsModel.getName().toLowerCase().startsWith(searchStr)){
@@ -111,7 +112,7 @@ public class RepuestosAdapter extends BaseAdapter implements Filterable {
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
 
-                accesoriosRepuestosModelsList = (List<AccesoriosRepuestosModel>) results.values;
+                accesoriosRepuestosModelsList = (List<Repuesto>) results.values;
                 notifyDataSetChanged();
             }
         };

@@ -1,6 +1,7 @@
 package com.electivaIII.sistemainventario.fragments.RepuestosFile;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,23 +10,39 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.electivaIII.sistemainventario.Adapters.AccesoriosAdapter;
 import com.electivaIII.sistemainventario.Adapters.RepuestosAdapter;
+import com.electivaIII.sistemainventario.Models.Accesorio;
 import com.electivaIII.sistemainventario.Models.AccesoriosRepuestosModel;
+import com.electivaIII.sistemainventario.Models.Repuesto;
+import com.electivaIII.sistemainventario.Models.Sesion;
 import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 import com.electivaIII.sistemainventario.Utils.TypeOfDevice;
 import com.electivaIII.sistemainventario.fragments.AccesoriosFile.ListAccesorios;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.electivaIII.sistemainventario.Interfaces.Globals.BASE_URL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +58,10 @@ public class ListRepuestos extends Fragment {
     AccesoriosRepuestosModel accesoriosRepuestosModel;
 
     TextView txtFindListRespuestos;
+    Sesion sesion;
+    Repuesto repuestos;
 
+    List<Repuesto> repuestoList = new ArrayList<>();
 
 
     setInfoListRepuestos setInfoListRepuestos;
@@ -63,31 +83,14 @@ public class ListRepuestos extends Fragment {
             txtFindListRespuestos.setHint("Search");
         }
 
-        String[] name = {
-                "Placa iPhone 6s",
-                "Bateria Samsung S7 Edge",
-                "Bandeja Sim Samsung S8"
+        HTTPrespuestos();
 
-        };
-        String[] disponibles = {
-                "item 2",
-                "item 4",
-                "item 6"
-        };
+        return v;
+    }
 
-        String[] images = {
-                "https://via.placeholder.com/500",
-                "https://via.placeholder.com/500",
-                "https://via.placeholder.com/500"
-        };
+    private void repuesto() {
 
-        for (int i=0; i<name.length; i ++){
-
-            accesoriosRepuestosModel = new AccesoriosRepuestosModel(name[i], disponibles[i], images[i]);
-            accesoriosRepuestosModelsList.add(accesoriosRepuestosModel);
-        }
-
-        accesoriosAdapter = new RepuestosAdapter(getContext(), accesoriosRepuestosModelsList);
+        accesoriosAdapter = new RepuestosAdapter(getContext(), repuestoList);
 
         // LLenamos el modelo con la informacion
         accesoriosRepuestosModel.setAccesorios(accesoriosRepuestosModelsList);
@@ -104,7 +107,6 @@ public class ListRepuestos extends Fragment {
                 data.putString("item", accesoriosRepuestosModelsList.get(position).getItem());
                 data.putString("image", accesoriosRepuestosModelsList.get(position).getImage());
                 fragmentDetalle.setArguments(data);
-
 
                 Fragment fragment = getFragmentManager().findFragmentById(R.id.f_detalle_repuesto);
                 if (fragment == null) {
@@ -138,7 +140,6 @@ public class ListRepuestos extends Fragment {
                 accesoriosAdapter.getFilter().filter(s.toString());
             }
         });
-        return v;
     }
 
     @Override
@@ -146,5 +147,95 @@ public class ListRepuestos extends Fragment {
         setInfoListRepuestos=(setInfoListRepuestos) context;
         super.onAttach(context);
     }
+
+    ProgressDialog progressDialog;
+    private void HTTPrespuestos() {
+
+        sesion = new Sesion();
+        SharedPreferences sesionAct =  getContext().getSharedPreferences("sesionActiva", Context.MODE_PRIVATE);
+        String token = sesionAct.getString("token","");
+        String url = "";
+        if (token!=""){
+
+            url = BASE_URL+"api/v1/inventories?access_token=" + token;
+
+        } else {
+
+            url = BASE_URL+"api/v1/inventories?access_token=" + sesion.getToken();
+        }
+
+        progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
+        progressDialog.setMessage("Obteniendo repuestos...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+
+        JsonArrayRequest request = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+
+
+                if (response.length() != 0) {
+
+                    for (int i=0; i< response.length(); i++) {
+                        try {
+
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            int inventorie_id = jsonObject.getInt("id");
+                            int quantity = jsonObject.getInt("quantity");
+
+                            JSONObject warehouse = jsonObject.getJSONObject("warehouse");
+                            int warehouse_id = warehouse.getInt("id");
+                            String warehousename = warehouse.getString("name");
+
+
+                            JSONObject product = jsonObject.getJSONObject("product");
+                            int product_id = product.getInt("id");
+                            String name = product.getString("name");
+                            String product_code = product.getString("product_code");
+
+                            String image = product.getString("image");
+
+
+                            if (image.isEmpty()) {
+                                image = "https://via.placeholder.com/500";
+                            }
+
+                            repuestos = new Repuesto(inventorie_id, quantity, warehouse_id, warehousename, product_id,
+                                    name, image, product_code);
+
+                            repuestoList.add(repuestos);
+
+                        } catch (JSONException e) {
+                            Log.e("error: ", e.toString());
+                        }
+                    }
+
+
+                } else {
+                    Toast.makeText(getActivity(), "Sin accesorios", Toast.LENGTH_SHORT).show();
+                }
+                progressDialog.dismiss();
+
+                repuesto();
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Ocurrió un error!!", Toast.LENGTH_SHORT).show();
+                Log.e("ERROR", error.toString());
+                progressDialog.dismiss();
+            }
+        });
+        queue.add(request);
+    }
+
 
 }
