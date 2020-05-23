@@ -54,7 +54,7 @@ public class ListRepuestos extends Fragment {
     }
     ListView listRepuestos;
     RepuestosAdapter accesoriosAdapter;
-    List<AccesoriosRepuestosModel> accesoriosRepuestosModelsList = new ArrayList<>();
+    List<Repuesto> accesoriosRepuestosModelsList = new ArrayList<>();
     AccesoriosRepuestosModel accesoriosRepuestosModel;
 
     TextView txtFindListRespuestos;
@@ -103,9 +103,17 @@ public class ListRepuestos extends Fragment {
                     view, final int position, long id) {
                 Fragment fragmentDetalle = new DetalleRepuestos();
                 Bundle data = new Bundle();
-                data.putString("name", accesoriosRepuestosModelsList.get(position).getName());
-                data.putString("item", accesoriosRepuestosModelsList.get(position).getItem());
-                data.putString("image", accesoriosRepuestosModelsList.get(position).getImage());
+                data.putInt("inventorie_id", repuestoList.get(position).getInventorie_id());
+                data.putInt("quantity", repuestoList.get(position).getQuantity());
+
+                data.putInt("warehouse_id", repuestoList.get(position).getWarehouse_id());
+                data.putString("warehouse", repuestoList.get(position).getWarehouse());
+
+                data.putString("name", repuestoList.get(position).getName());
+                data.putString("image", repuestoList.get(position).getImage());
+                data.putInt("product_id", repuestoList.get(position).getProduct_id());
+                data.putString("product_code", repuestoList.get(position).getProduct_code());
+
                 fragmentDetalle.setArguments(data);
 
                 Fragment fragment = getFragmentManager().findFragmentById(R.id.f_detalle_repuesto);

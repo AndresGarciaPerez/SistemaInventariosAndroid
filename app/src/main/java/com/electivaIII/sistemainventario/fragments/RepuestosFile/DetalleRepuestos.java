@@ -18,6 +18,7 @@ import com.electivaIII.sistemainventario.R;
 import com.electivaIII.sistemainventario.Utils.ChangeFragment;
 import com.electivaIII.sistemainventario.Utils.TypeOfDevice;
 import com.electivaIII.sistemainventario.fragments.ListUbicaciones;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,27 +30,55 @@ public class DetalleRepuestos extends Fragment {
     }
 
     ImageView imageViewDetalleRespuesto;
-    TextView txtProductoDetalleRepuestos;
+    TextView txtProductoDetalleRepuestos, txtquantityRepuesto, txtalmacenRepuesto, txtCodigoRepuesto;
     Button btnUbicacionDetalleRepuesto;
 
+    int inventorie_id = 0;
+    int quantity = 0;
+
+    int warehouse_id = 0;
+    String warehouse = "";
+
+    int product_id = 0;
+    String name = "";
+    String image = "";
+    String product_code = "";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_detalle_repuestos, container, false);
         Bundle bundle = this.getArguments();
-        String name = "";
-        int image = 0;
         if (bundle != null) {
+
+            inventorie_id = bundle.getInt("inventorie_id");
+            quantity = bundle.getInt("quantity");
+            warehouse_id = bundle.getInt("warehouse_id");
+            warehouse = bundle.getString("warehouse");
+            product_id = bundle.getInt("product_id");
             name = bundle.getString("name");
-            image = bundle.getInt("image");
+            image = bundle.getString("image");
+            product_code = bundle.getString("product_code");
         }
 
         imageViewDetalleRespuesto = v.findViewById(R.id.imageViewDetalleRespuesto);
         txtProductoDetalleRepuestos = v.findViewById(R.id.txtProductoDetalleRepuestos);
+
+        txtquantityRepuesto = v.findViewById(R.id.txtquantityRepuesto);
+        txtalmacenRepuesto = v.findViewById(R.id.txtalmacenRepuesto);
+        txtCodigoRepuesto = v.findViewById(R.id.txtCodigoRepuesto);
+
         btnUbicacionDetalleRepuesto = v.findViewById(R.id.btnUbicacionDetalleRepuesto);
+
+
         txtProductoDetalleRepuestos.setText(name);
-        imageViewDetalleRespuesto.setImageResource(image);
+        txtquantityRepuesto.setText(String.valueOf(quantity));
+        txtalmacenRepuesto.setText(warehouse);
+        txtCodigoRepuesto.setText(product_code);
+
+
+
+        Picasso.get().load(image).placeholder(R.drawable.progress_animation).into(imageViewDetalleRespuesto);
 
         SharedPreferences idioma = getActivity().getSharedPreferences("idioma", Context.MODE_PRIVATE);
         language = idioma.getBoolean("trueIdioma",false);
