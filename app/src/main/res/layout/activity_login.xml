@@ -26,7 +26,7 @@
             android:layout_marginTop="30dp"
             android:ems="10"
             android:hint="Correo@mail.com"
-            android:text="kevin@electiva.com"
+            android:text="kevin@electiva.io"
             android:inputType="textPersonName" />
 
         <EditText

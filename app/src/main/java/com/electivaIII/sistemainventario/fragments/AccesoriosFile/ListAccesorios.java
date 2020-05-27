@@ -182,11 +182,11 @@ public class ListAccesorios extends Fragment {
         String url = "";
         if (token!=""){
 
-            url = BASE_URL+"api/v1/inventories?access_token=" + token;
+            url = BASE_URL+"api/v1/inventories?access_token=" + token+"&product_type=1";
 
         } else {
 
-            url = BASE_URL+"api/v1/inventories?access_token=" + sesion.getToken();
+            url = BASE_URL+"api/v1/inventories?access_token=" + sesion.getToken()+"&product_type=1";
         }
 
         progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);

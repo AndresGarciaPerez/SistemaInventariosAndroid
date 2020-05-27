@@ -165,12 +165,14 @@ public class ListRepuestos extends Fragment {
         String url = "";
         if (token!=""){
 
-            url = BASE_URL+"api/v1/inventories?access_token=" + token;
+            url = BASE_URL+"api/v1/inventories?access_token=" + token+"&product_type=2";
 
         } else {
 
-            url = BASE_URL+"api/v1/inventories?access_token=" + sesion.getToken();
+            url = BASE_URL+"api/v1/inventories?access_token=" + sesion.getToken()+"&product_type=2";
         }
+
+        Log.i("url", url);
 
         progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
         progressDialog.setMessage("Obteniendo repuestos...");
