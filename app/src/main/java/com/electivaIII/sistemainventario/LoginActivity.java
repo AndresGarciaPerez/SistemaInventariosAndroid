@@ -21,18 +21,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import android.widget.Toast;
 
 import com.electivaIII.sistemainventario.Models.Sesion;
-import com.electivaIII.sistemainventario.Models.User;
 import com.electivaIII.sistemainventario.fragments.Preferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.electivaIII.sistemainventario.Interfaces.Globals.BASE_URL;
@@ -128,34 +124,22 @@ public class LoginActivity extends AppCompatActivity {
                     String token_type = response.getString("token_type");
                     int expires_in = response.getInt("expires_in");
 
-                    Sesion sesion = new Sesion(access_token, token_type, refresh_token, expires_in);
-
+                    new Sesion(access_token, token_type, refresh_token, expires_in);
 
                     // USER INFO
 
-                    List users = new ArrayList<User>();
                     JSONObject mJsonUser = response.getJSONObject("user");
 
                     int id = mJsonUser.getInt("id");
                     String firstName = mJsonUser.getString("first_name");
                     String lastName = mJsonUser.getString("last_name");
-                    String username = mJsonUser.getString("username");
-                    String email = mJsonUser.getString("email");
-                    boolean status = mJsonUser.getBoolean("status");
-                    JSONObject mjsonRole = mJsonUser.getJSONObject("role");
-
-                    int role_id = mjsonRole.getInt("id");
-                    String role_name = mjsonRole.getString("name");
 
                     SharedPreferences sesionActiva = getApplicationContext().getSharedPreferences("sesionActiva",Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sesionActiva.edit();
                     editor.putString("user_id", String.valueOf(id));
+                    editor.putString("user_name", firstName + " " + lastName);
                     editor.apply();
 
-                    users.add(new User(id, firstName, lastName, username, email, status, role_id, role_name));
-
-
-                    sesion.setUsers(users);
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);

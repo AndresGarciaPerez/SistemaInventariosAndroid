@@ -25,17 +25,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.electivaIII.sistemainventario.LoginActivity;
-import com.electivaIII.sistemainventario.MainActivity;
 import com.electivaIII.sistemainventario.Models.Sesion;
-import com.electivaIII.sistemainventario.Models.User;
 import com.electivaIII.sistemainventario.R;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static com.electivaIII.sistemainventario.Interfaces.Globals.BASE_URL;
@@ -47,7 +42,7 @@ public class ChangePassword extends Fragment {
     Boolean language=false;
     EditText edtActual, edtNueva, edtConfirmar;
     Button btnConfirmar;
-    TextView tvUsuario, tvPass;
+    TextView tvUsuario;
     public ChangePassword() {
         // Required empty public constructor
     }
@@ -66,9 +61,13 @@ public class ChangePassword extends Fragment {
         edtNueva = v.findViewById(R.id.edtNueva);
         edtConfirmar = v.findViewById(R.id.edtConfirmar);
         tvUsuario = v.findViewById(R.id.tUser);
-        tvPass = v.findViewById(R.id.tPass);
 
         SharedPreferences idioma = getActivity().getSharedPreferences("idioma", Context.MODE_PRIVATE);
+
+        SharedPreferences sesionAct =  getContext().getSharedPreferences("sesionActiva", Context.MODE_PRIVATE);
+
+        tvUsuario.setText(sesionAct.getString("user_name",""));
+
         language = idioma.getBoolean("trueIdioma",false);
         if (language==true){
             edtActual.setHint("Current Password");
@@ -121,8 +120,8 @@ public class ChangePassword extends Fragment {
 
         progressDialog.show();
 
-        Sesion sesion = new Sesion();
         SharedPreferences sesionAct =  getContext().getSharedPreferences("sesionActiva", Context.MODE_PRIVATE);
+        Sesion sesion = new Sesion();
         String token = sesionAct.getString("token","");
         String url = "";
         if (token!=""){

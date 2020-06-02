@@ -1,8 +1,5 @@
 package com.electivaIII.sistemainventario.Models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Sesion {
 
     public static String access_token;
@@ -21,29 +18,9 @@ public class Sesion {
         this.expires_in = expires_in;
     }
 
-    private static List users = new ArrayList<User>();
 
     public String getToken() {
         return access_token;
     }
 
-    public String getToken_type() {
-        return token_type;
-    }
-
-    public String getRefresh_token() {
-        return refresh_token;
-    }
-
-    public int getExpires_in() {
-        return expires_in;
-    }
-
-    public static List getUsers() {
-        return users;
-    }
-
-    public static void setUsers(List users) {
-        Sesion.users = users;
-    }
 }
