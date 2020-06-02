@@ -147,8 +147,13 @@ public class LoginActivity extends AppCompatActivity {
                     int role_id = mjsonRole.getInt("id");
                     String role_name = mjsonRole.getString("name");
 
+                    SharedPreferences sesionActiva = getApplicationContext().getSharedPreferences("sesionActiva",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sesionActiva.edit();
+                    editor.putString("user_id", String.valueOf(id));
+                    editor.apply();
 
                     users.add(new User(id, firstName, lastName, username, email, status, role_id, role_name));
+
 
                     sesion.setUsers(users);
 
