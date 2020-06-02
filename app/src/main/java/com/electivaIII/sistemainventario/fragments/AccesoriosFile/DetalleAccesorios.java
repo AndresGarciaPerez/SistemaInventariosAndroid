@@ -59,7 +59,6 @@ public class DetalleAccesorios extends Fragment {
     ArrayList<String> warehousesLat = new ArrayList<>();
     ArrayList<String> warehousesLong = new ArrayList<>();
 
-
     int inventorie_id = 0;
     int quantity = 0;
 
@@ -152,7 +151,13 @@ public class DetalleAccesorios extends Fragment {
         }
 
         progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
-        progressDialog.setMessage("Obteniendo ubicación de "+name);
+        String messageDialog;
+        if (language) {
+            messageDialog = "Getting location of "+ name;
+        } else {
+            messageDialog = "Obteniendo ubicación de "+name;
+        }
+        progressDialog.setMessage(messageDialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 

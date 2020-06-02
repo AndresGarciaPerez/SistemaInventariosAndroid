@@ -113,23 +113,6 @@ public class DetalleRepuestos extends Fragment {
             @Override
             public void onClick(View v) {
 
-                /*Fragment fragmentListUbicaciones = new ListUbicaciones();
-                Bundle data = new Bundle();
-                int fragmentMain;
-
-                if (new TypeOfDevice().isMovil()) {
-
-                    fragmentMain = R.id.frMainRepuestos;
-                } else {
-
-                    fragmentMain = R.id.f_detalle_repuesto;
-                }
-
-                data.putInt("frMain", fragmentMain);
-                fragmentListUbicaciones.setArguments(data);
-
-
-                ChangeFragment.changeFragment(fragmentMain, getActivity(), fragmentListUbicaciones);*/
                 HTTPaccesories();
 
             }
@@ -155,7 +138,13 @@ public class DetalleRepuestos extends Fragment {
         }
 
         progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
-        progressDialog.setMessage("Obteniendo ubicación de "+name);
+        String messageDialog;
+        if (language) {
+            messageDialog = "Getting location of "+ name;
+        } else {
+            messageDialog = "Obteniendo ubicación de "+name;
+        }
+        progressDialog.setMessage(messageDialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 

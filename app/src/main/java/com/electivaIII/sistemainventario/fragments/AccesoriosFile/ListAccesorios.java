@@ -190,7 +190,14 @@ public class ListAccesorios extends Fragment {
         }
 
         progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
-        progressDialog.setMessage("Obteniendo accesorios...");
+
+        String messageDialog;
+        if (language) {
+            messageDialog = "Getting accesories...";
+        } else {
+            messageDialog = "Obteniendo accesorios...";
+        }
+        progressDialog.setMessage(messageDialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 

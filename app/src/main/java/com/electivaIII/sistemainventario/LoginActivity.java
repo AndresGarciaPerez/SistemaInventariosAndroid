@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
         SharedPreferences idioma = this.getSharedPreferences("idioma",Context.MODE_PRIVATE);
         language = idioma.getBoolean("trueIdioma",false);
-        if (language==true){
+        if (language){
             tvPassword.setText("I forgot my password");
             btnIniciarSesion.setText("log In");
             etCorreo.setHint("Example@mail.com");
@@ -97,7 +97,13 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     public void LoginRequest(String mail, String pass) {
         progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
-        progressDialog.setMessage("Iniciando sesión...");
+        String messageDialog;
+        if (language) {
+            messageDialog = "Logging in...";
+        } else {
+            messageDialog = "Iniciando sesión...";
+        }
+        progressDialog.setMessage(messageDialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
@@ -147,8 +153,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 } catch (JSONException e){
 
+                    if (language) {
 
-                    txtShowError.setText("Something went wrong, try again later, or contact you with the administrator");
+                        txtShowError.setText("Something went wrong, try again later, or contact you with the administrator");
+                    } else {
+
+                        txtShowError.setText("Ha habido un error, inténtelo de nuevo, o contacte con un administrador");
+                    }
                     Log.e("VOLLEY","Error de parcing en Login - method: LoginRequest "+ e.toString());
                     e.printStackTrace();
 
@@ -172,8 +183,14 @@ public class LoginActivity extends AppCompatActivity {
                         txtShowError.setText("Credentials invalid, try out again");
                     }
                 }
-                txtShowError.setText("Something went wrong try again later, or contact you with the administrator");
 
+                if (language) {
+
+                    txtShowError.setText("Something went wrong, try again later, or contact you with the administrator");
+                } else {
+
+                    txtShowError.setText("Ha habido un error, inténtelo de nuevo, o contacte con un administrador");
+                }
 
                 progressDialog.dismiss();
 

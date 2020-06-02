@@ -175,7 +175,13 @@ public class ListRepuestos extends Fragment {
         Log.i("url", url);
 
         progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
-        progressDialog.setMessage("Obteniendo repuestos...");
+        String messageDialog;
+        if (language) {
+            messageDialog = "Getting spare part...";
+        } else {
+            messageDialog = "Obteniendo los repuestos...";
+        }
+        progressDialog.setMessage(messageDialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 

@@ -42,7 +42,7 @@ public class ChangePassword extends Fragment {
     Boolean language=false;
     EditText edtActual, edtNueva, edtConfirmar;
     Button btnConfirmar;
-    TextView tvUsuario;
+    TextView tvUsuario, txtConfirmPassword, txtNewPassword, txtCurrentPassword;
     public ChangePassword() {
         // Required empty public constructor
     }
@@ -62,6 +62,11 @@ public class ChangePassword extends Fragment {
         edtConfirmar = v.findViewById(R.id.edtConfirmar);
         tvUsuario = v.findViewById(R.id.tUser);
 
+        txtConfirmPassword = v.findViewById(R.id.txtConfirmPassword);
+        txtNewPassword = v.findViewById(R.id.txtNewPassword);
+        txtCurrentPassword = v.findViewById(R.id.txtCurrentPassword);
+
+
         SharedPreferences idioma = getActivity().getSharedPreferences("idioma", Context.MODE_PRIVATE);
 
         SharedPreferences sesionAct =  getContext().getSharedPreferences("sesionActiva", Context.MODE_PRIVATE);
@@ -69,11 +74,17 @@ public class ChangePassword extends Fragment {
         tvUsuario.setText(sesionAct.getString("user_name",""));
 
         language = idioma.getBoolean("trueIdioma",false);
-        if (language==true){
-            edtActual.setHint("Current Password");
-            edtNueva.setHint("New Password");
-            edtConfirmar.setHint("Confirm Password");
+        if (language){
+            txtCurrentPassword.setText("Current Password");
+            txtNewPassword.setText("New Password");
+            txtConfirmPassword.setText("Confirm Password");
             btnConfirmar.setText("Confirm");
+        } else {
+
+            txtCurrentPassword.setText("Contraseña actual");
+            txtNewPassword.setText("Nueva contraseña");
+            txtConfirmPassword.setText("Confirmar nueva contraseña");
+            btnConfirmar.setText("Confirmar");
         }
 
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
@@ -83,24 +94,32 @@ public class ChangePassword extends Fragment {
                 String nueva = edtNueva.getText().toString().trim();
                 String confirmacion = edtConfirmar.getText().toString().trim();
 
+                String errorMessage, errorPasswordNotMatch;
+                if (language) {
+                    errorMessage = "Getting accesories...";
+                    errorPasswordNotMatch = "Password does not match";
+                } else {
+                    errorMessage = "Obteniendo accesorios...";
+                    errorPasswordNotMatch = "Contraseñas no coinciden";
+                }
+
 
                 if (nueva.isEmpty()) {
-                    edtNueva.setError("Is required");
+                    edtNueva.setError(errorMessage);
                     edtNueva.setFocusable(true);
                 } else if(confirmacion.isEmpty()) {
-                    edtConfirmar.setError("Is required");
+                    edtConfirmar.setError(errorMessage);
                     edtConfirmar.setFocusable(true);
                 } else if (!actual.isEmpty()) {
                     if (nueva.equals(confirmacion)) {
 
-                        Toast.makeText(getActivity(), "set", Toast.LENGTH_SHORT).show();
                         LogoutRequest(actual, nueva, confirmacion);
 
                     } else {
-                        Toast.makeText(getActivity(), "Password does not match", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), errorPasswordNotMatch, Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    edtActual.setError("Is required");
+                    edtActual.setError(errorMessage);
                     edtActual.setFocusable(true);
                 }
 
