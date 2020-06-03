@@ -39,6 +39,7 @@ import static com.electivaIII.sistemainventario.Interfaces.Globals.BASE_URL;
  * A simple {@link Fragment} subclass.
  */
 public class ChangePassword extends Fragment {
+
     Boolean language=false;
     EditText edtActual, edtNueva, edtConfirmar;
     Button btnConfirmar;
@@ -46,7 +47,6 @@ public class ChangePassword extends Fragment {
     public ChangePassword() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -122,8 +122,6 @@ public class ChangePassword extends Fragment {
                     edtActual.setError(errorMessage);
                     edtActual.setFocusable(true);
                 }
-
-
             }
         });
 
@@ -167,6 +165,12 @@ public class ChangePassword extends Fragment {
                 Intent login = new Intent(getContext(), LoginActivity.class);
                 startActivity(login);
                 progressDialog.dismiss();
+
+                SharedPreferences sesionActiva = getActivity().getSharedPreferences("sesionActiva",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sesionActiva.edit();
+                editor.putString("token","");
+                editor.apply();
+
                 getActivity().finish();
 
 
@@ -186,13 +190,10 @@ public class ChangePassword extends Fragment {
                 }
                 //txtShowError.setText("Something went wrong try again later, or contact you with the administrator");
 
-
                 progressDialog.dismiss();
 
             }
         });
-
         queue.add(request);
-
     }
 }
